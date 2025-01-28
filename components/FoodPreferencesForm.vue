@@ -25,14 +25,14 @@
 							</div>
 
 							<div class="space-y-2">
-								<label for="age" class="block text-sm font-medium text-gray-700">
+								<label for="age" class="block text-base font-medium text-gray-700">
 									Возраст
 								</label>
 								<input
 									v-model="formData.age"
 									type="number"
 									id="age"
-									class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none"
+									class="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none"
 									placeholder="Ваш возраст"
 								/>
 							</div>
@@ -125,7 +125,7 @@
 								>
 									<font-awesome-icon
 										:icon="cuisine.icon"
-										class="h-7 w-7 mb-2"
+										class="h-10 w-10 mb-3"
 										:class="formData.cuisines.includes(cuisine.id) ? 'text-blue-500' : 'text-gray-400'"
 									/>
 									<span class="text-base font-medium text-gray-700">{{ cuisine.name }}</span>
