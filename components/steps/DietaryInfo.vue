@@ -41,7 +41,7 @@
 		<!-- Calorie Range -->
 		<div class="space-y-4">
 			<h3 class="text-xl font-semibold flex items-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-				<font-awesome-icon icon="fire-flame-curved" class="mr-3 h-6 w-6 text-blue-500" />
+				<font-awesome-icon icon="fire-flame-curved" class="mr-3 h-6 w-6 text-blue-500"/>
 				Предпочтительная калорийность
 			</h3>
 
@@ -75,9 +75,14 @@
 							<div class="flex flex-col justify-between flex-grow">
 								<div>
 									<div class="font-medium text-gray-700">{{ range.label }}</div>
-									<div v-if="range.description" class="text-sm text-gray-500">{{ range.description }}</div>
+									<div v-if="range.description" class="text-sm text-gray-500">{{
+											range.description
+										}}
+									</div>
 								</div>
-								<div class="text-sm text-blue-600 mt-2">{{ range.value.min }} - {{ range.value.max }} ккал</div>
+								<div class="text-sm text-blue-600 mt-2">{{ range.value.min }} - {{ range.value.max }}
+									ккал
+								</div>
 							</div>
 						</div>
 					</div>
@@ -94,12 +99,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // Dietary restrictions
 const dietaryRestrictions = [
-	{id: 'vegetarian', name: 'Вегетарианство', icon: 'leaf'},
-	{id: 'vegan', name: 'Веганство', icon: 'seedling'},
-	{id: 'gluten-free', name: 'Без глютена', icon: 'wheat-awn-circle-exclamation'},
-	{id: 'lactose-free', name: 'Без лактозы', icon: 'glass-water'},
-	{id: 'nuts-free', name: 'Без орехов', icon: 'ban'},
-	{id: 'low-carb', name: 'Низкоуглеводная', icon: 'bread-slice'},
+	{ id: 'vegetarian', name: 'Вегетарианство', icon: 'leaf' },
+	{ id: 'vegan', name: 'Веганство', icon: 'seedling' },
+	{ id: 'gluten-free', name: 'Без глютена', icon: 'wheat-awn-circle-exclamation' },
+	{ id: 'lactose-free', name: 'Без лактозы', icon: 'glass-water' },
+	{ id: 'nuts-free', name: 'Без орехов', icon: 'ban' },
+	{ id: 'low-carb', name: 'Низкоуглеводная', icon: 'bread-slice' },
 ];
 
 // Calorie ranges
@@ -109,35 +114,35 @@ const calorieRanges = [
 		id: 'weight-loss',
 		label: 'Снижение веса',
 		description: 'Подходит для плавного снижения веса',
-		value: {min: 1200, max: 1500},
+		value: { min: 1200, max: 1500 },
 		icon: 'weight-scale'
 	},
 	{
 		id: 'balanced',
 		label: 'Поддержание веса',
 		description: 'Достаточно сбалансированное питание',
-		value: {min: 1500, max: 2000},
+		value: { min: 1500, max: 2000 },
 		icon: 'balance-scale'
 	},
 	{
 		id: 'active',
 		label: 'Активный образ жизни',
 		description: 'Для людей с регулярными физическими нагрузками',
-		value: {min: 2000, max: 2500},
+		value: { min: 2000, max: 2500 },
 		icon: 'person-running'
 	},
 	{
 		id: 'athletic',
 		label: 'Набор массы',
 		description: 'Для интенсивных тренировок и набора массы',
-		value: {min: 2500, max: 3500}, // Увеличили максимум до 3500
+		value: { min: 2500, max: 3500 }, // Увеличили максимум до 3500
 		icon: 'dumbbell'
 	},
 	{
 		id: 'custom-high',
 		label: 'Высококалорийный',
 		description: 'Для специальных программ питания',
-		value: {min: 3500, max: 5000}, // Добавили новый диапазон
+		value: { min: 3500, max: 5000 }, // Добавили новый диапазон
 		icon: 'fire'
 	}
 ];
@@ -175,5 +180,5 @@ const updateCalories = (range: { min: number; max: number }) => {
 
 watch(formData, (newValue) => {
 	emit('update:modelValue', newValue);
-}, {deep: true});
+}, { deep: true });
 </script>

@@ -83,7 +83,7 @@ const defaultFormData: FormData = {
 	budget: 5000
 };
 
-const formData = ref<FormData>({...defaultFormData});
+const formData = ref<FormData>({ ...defaultFormData });
 
 // Сохранение в localStorage
 const saveProgress = () => {
@@ -105,7 +105,7 @@ const loadProgress = () => {
 	const saved = localStorage.getItem(STORAGE_KEY);
 	if (saved) {
 		try {
-			const {progress, formData: savedData} = JSON.parse(saved);
+			const { progress, formData: savedData } = JSON.parse(saved);
 			currentStep.value = progress.currentStep;
 			// Объединяем сохраненные данные с дефолтными, чтобы избежать undefined
 			formData.value = {
@@ -121,7 +121,7 @@ const loadProgress = () => {
 // Сохраняем данные при изменении шага или данных формы
 watch([currentStep, formData], () => {
 	saveProgress();
-}, {deep: true});
+}, { deep: true });
 
 const currentStepComponent = computed(() => {
 	switch (currentStep.value) {

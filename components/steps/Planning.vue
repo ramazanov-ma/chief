@@ -8,7 +8,7 @@
 		<!-- Время на готовку -->
 		<div class="space-y-4">
 			<h3 class="text-xl font-semibold flex items-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-				<font-awesome-icon icon="clock" class="mr-3 h-6 w-6 text-blue-500" />
+				<font-awesome-icon icon="clock" class="mr-3 h-6 w-6 text-blue-500"/>
 				Время на готовку
 			</h3>
 
@@ -46,7 +46,7 @@
 		<!-- Частота покупок -->
 		<div class="space-y-4">
 			<h3 class="text-xl font-semibold flex items-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-				<font-awesome-icon icon="cart-shopping" class="mr-3 h-6 w-6 text-blue-500" />
+				<font-awesome-icon icon="cart-shopping" class="mr-3 h-6 w-6 text-blue-500"/>
 				Частота покупок
 			</h3>
 			<div class="grid grid-cols-3 gap-4">
@@ -126,26 +126,26 @@ import type { FormData } from '@/types/form';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const shoppingFrequencies = [
-	{id: 'daily', name: 'Ежедневно', icon: 'calendar-day'},
-	{id: 'weekly', name: 'Раз в неделю', icon: 'calendar-week'},
-	{id: 'biweekly', name: 'Раз в 2 недели', icon: 'calendar'},
+	{ id: 'daily', name: 'Ежедневно', icon: 'calendar-day' },
+	{ id: 'weekly', name: 'Раз в неделю', icon: 'calendar-week' },
+	{ id: 'biweekly', name: 'Раз в 2 недели', icon: 'calendar' },
 ];
 
 const cookingTimes = [
-	{value: 15, label: 'До 15 минут', icon: 'bolt'},
-	{value: 30, label: 'До 30 минут', icon: 'clock'},
-	{value: 45, label: 'До 45 минут', icon: 'hourglass-half'},
-	{value: 60, label: 'До 60 минут', icon: 'hourglass'},
-	{value: 61, label: 'Более 60 минут', icon: 'hourglass-end'}
+	{ value: 15, label: 'До 15 минут', icon: 'bolt' },
+	{ value: 30, label: 'До 30 минут', icon: 'clock' },
+	{ value: 45, label: 'До 45 минут', icon: 'hourglass-half' },
+	{ value: 60, label: 'До 60 минут', icon: 'hourglass' },
+	{ value: 61, label: 'Более 60 минут', icon: 'hourglass-end' }
 ];
 
 const budgetRanges = [
-	{value: 3000, label: 'До 3 000 ₽', icon: 'coins'},
-	{value: 5000, label: 'До 5 000 ₽', icon: 'wallet'},
-	{value: 7000, label: 'До 7 000 ₽', icon: 'sack-dollar'},
-	{value: 10000, label: 'До 10 000 ₽', icon: 'money-bill-wave'},
-	{value: 15000, label: 'До 15 000 ₽', icon: 'money-bills'},
-	{value: 15001, label: 'Более 15 000 ₽', icon: 'vault'}
+	{ value: 3000, label: 'До 3 000 ₽', icon: 'coins' },
+	{ value: 5000, label: 'До 5 000 ₽', icon: 'wallet' },
+	{ value: 7000, label: 'До 7 000 ₽', icon: 'sack-dollar' },
+	{ value: 10000, label: 'До 10 000 ₽', icon: 'money-bill-wave' },
+	{ value: 15000, label: 'До 15 000 ₽', icon: 'money-bills' },
+	{ value: 15001, label: 'Более 15 000 ₽', icon: 'vault' }
 ];
 
 const props = defineProps<{
@@ -164,5 +164,5 @@ const formData = ref({
 
 watch(formData, (newValue) => {
 	emit('update:modelValue', newValue);
-}, {deep: true});
+}, { deep: true });
 </script>

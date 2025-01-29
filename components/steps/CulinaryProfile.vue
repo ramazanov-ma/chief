@@ -1,14 +1,14 @@
 ﻿<template>
 	<div class="space-y-6">
 		<h2 class="text-2xl font-semibold flex items-center justify-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-			<font-awesome-icon icon="user" class="mr-3 h-6 w-6 text-blue-500" />
+			<font-awesome-icon icon="user" class="mr-3 h-6 w-6 text-blue-500"/>
 			Кулинарные предпочтения
 		</h2>
 
 		<!-- Любимые кухни -->
 		<div class="space-y-4">
 			<h3 class="text-xl font-semibold flex items-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-				<font-awesome-icon icon="globe" class="mr-3 h-6 w-6 text-blue-500" />
+				<font-awesome-icon icon="globe" class="mr-3 h-6 w-6 text-blue-500"/>
 				Любимые кухни
 			</h3>
 
@@ -46,7 +46,7 @@
 		<!-- Опыт готовки -->
 		<div class="space-y-4">
 			<h3 class="text-xl font-semibold flex items-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-				<font-awesome-icon icon="kitchen-set" class="mr-3 h-6 w-6 text-blue-500" />
+				<font-awesome-icon icon="kitchen-set" class="mr-3 h-6 w-6 text-blue-500"/>
 				Опыт готовки
 			</h3>
 
