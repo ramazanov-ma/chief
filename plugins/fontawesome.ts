@@ -35,7 +35,12 @@ import {
 	faVault,
 	faCircleExclamation,
 	faFireFlameCurved,
-	faCartShopping
+	faCartShopping,
+	faWeightScale,
+	faBalanceScale,
+	faPersonRunning,
+	faDumbbell,
+	faFire
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -72,7 +77,12 @@ library.add(
 	faVault,
 	faCircleExclamation,
 	faFireFlameCurved,
-	faCartShopping
+	faCartShopping,
+	faWeightScale,
+	faBalanceScale,
+	faPersonRunning,
+	faDumbbell,
+	faFire
 );
 
 export default defineNuxtPlugin((app) => {
