@@ -40,7 +40,9 @@ import {
 	faBalanceScale,
 	faPersonRunning,
 	faDumbbell,
-	faFire
+	faFire,
+	faUserGear,
+	faCalculator,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -82,7 +84,9 @@ library.add(
 	faBalanceScale,
 	faPersonRunning,
 	faDumbbell,
-	faFire
+	faFire,
+	faUserGear,
+	faCalculator,
 );
 
 export default defineNuxtPlugin((app) => {

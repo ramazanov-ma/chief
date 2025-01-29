@@ -58,7 +58,6 @@ import CulinaryProfile from './steps/CulinaryProfile.vue';
 import DietaryInfo from './steps/DietaryInfo.vue';
 import Planning from './steps/Planning.vue';
 
-const TOTAL_STEPS = 4;
 const STORAGE_KEY = 'meal-planner-progress';
 const currentStep = ref<FormStep>(FORM_STEPS.BASIC_INFO);
 const totalSteps = FORM_STEPS.TOTAL;
