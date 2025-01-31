@@ -19,10 +19,3 @@
 	shoppingFrequency: 'daily' | 'weekly' | 'biweekly';
 	budget: number;
 }
-
-export interface FormProgress {
-	currentStep: number;
-	totalSteps: number;
-	lastSaved: string;
-	isCompleted: boolean;
-}
