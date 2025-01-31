@@ -26,9 +26,9 @@
 
 <script setup lang="ts">
 import type { FormData } from '@/types/form';
-import TitleGradient from '@/components/common/TitleGradient.vue';
-import TitleBadge from '@/components/common/TitleBadge.vue';
-import GradientDivider from '@/components/common/GradientDivider.vue';
+import TitleGradient from '@/components/ui/TitleGradient.vue';
+import TitleBadge from '@/components/ui/TitleBadge.vue';
+import GradientDivider from '@/components/ui/GradientDivider.vue';
 import StepManager from '@/components/StepManager.vue';
 import ServiceBenefits from '@/components/ServiceBenefits.vue';
 
