@@ -2,6 +2,8 @@
 	<div class="space-y-8">
 		<!-- Dietary Restrictions -->
 		<div class="space-y-4">
+			<TitleSection icon="user">Кулинарные предпочтения</TitleSection>
+
 			<h3 class="text-xl font-semibold flex items-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
 				<font-awesome-icon icon="circle-exclamation" class="mr-3 h-6 w-6 text-blue-500"/>
 				Ограничения в питании
@@ -96,6 +98,7 @@
 import { ref, watch } from 'vue';
 import type { FormData } from '@/types/form';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import TitleSection from '@/components/ui/TitleSection.vue';
 
 // Dietary restrictions
 const dietaryRestrictions = [

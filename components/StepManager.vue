@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue';
 import type { FormData } from '@/types/form';
-import { FORM_STEPS, type FormStep } from '@/constants/steps';
+import { FORM_STEPS } from '@/constants/steps';
 import ProgressBar from '@/components/ui/ProgressBar.vue';
 import BasicInfo from './steps/BasicInfo.vue';
 import CulinaryProfile from './steps/CulinaryProfile.vue';

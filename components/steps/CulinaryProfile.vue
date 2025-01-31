@@ -1,9 +1,6 @@
 ﻿<template>
 	<div class="space-y-6">
-		<h2 class="text-2xl font-semibold flex items-center justify-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-			<font-awesome-icon icon="user" class="mr-3 h-6 w-6 text-blue-500"/>
-			Кулинарные предпочтения
-		</h2>
+		<TitleSection icon="utensils">Кулинарные предпочтения</TitleSection>
 
 		<!-- Любимые кухни -->
 		<div class="space-y-4">
@@ -87,6 +84,7 @@
 import { ref, watch } from 'vue';
 import type { FormData } from '@/types/form';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import TitleSection from '@/components/ui/TitleSection.vue';
 
 const cuisineTypes = [
 	{ id: 'italian', name: 'Итальянская', icon: 'pizza-slice' },
