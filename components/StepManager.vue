@@ -35,6 +35,7 @@ import ProgressBar from '@/components/ui/ProgressBar.vue';
 import StepButtons from '@/components/navigation/StepButtons.vue';
 
 import BasicInfo from '@/components/onboarding/BasicInfo.vue';
+import Servings from '@/components/onboarding/Servings.vue';
 import CookingExperience from '@/components/onboarding/CookingExperience.vue';
 import FavoriteCuisines from '@/components/onboarding/FavoriteCuisines.vue';
 import DietaryInfo from '@/components/onboarding/DietaryInfo.vue';
@@ -48,6 +49,7 @@ const totalSteps = FORM_STEPS.TOTAL;
 const defaultFormData: FormData = {
 	name: '',
 	age: null,
+	servings: 1,
 	cuisines: [],
 	cookingExperience: 'beginner',
 	restrictions: ['no_restrictions'],
@@ -70,6 +72,8 @@ const currentStepComponent = computed(() => {
 			return CookingExperience;
 		case FORM_STEPS.FAVORITE_CUISINES:
 			return FavoriteCuisines;
+		case FORM_STEPS.SERVINGS:
+			return Servings;
 		case FORM_STEPS.DIETARY_INFO:
 			return DietaryInfo;
 		case FORM_STEPS.COOKING_TIME:
