@@ -2,7 +2,7 @@
 	<div class="flex justify-between mt-8">
 		<!-- Back button -->
 		<BaseButton
-			v-if="showBackButton"
+			v-if="currentStep > 1"
 			variant="secondary"
 			@click="$emit('prev')"
 		>
@@ -11,7 +11,11 @@
 
 		<!-- Next/Finish button -->
 		<BaseButton
-			:class="{ 'ml-auto': showBackButton }"
+			v-if="currentStep <= totalSteps"
+			class="ml-auto"
+			:disabled="!isStepValid"
+			:variant="isStepValid ? 'primary' : 'secondary'"
+			:class="[!isStepValid && 'opacity-50 cursor-not-allowed bg-gray-300 hover:bg-gray-300 from-gray-400 to-gray-400']"
 			@click="$emit('next')"
 		>
 			{{ isLastStep ? 'Завершить' : 'Далее' }}
@@ -26,21 +30,17 @@ import BaseButton from '../ui/BaseButton.vue';
 interface Props {
 	currentStep: number;
 	totalSteps: number;
-	showBackButton?: boolean;
+	isStepValid: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-	showBackButton: true
-});
+const props = defineProps<Props>();
 
-// Check if current step is the last one
-const isLastStep = computed(() =>
-	props.currentStep === props.totalSteps
-);
-
-// Define available events
 defineEmits<{
 	(e: 'next'): void;
 	(e: 'prev'): void;
 }>();
+
+const isLastStep = computed(() =>
+	props.currentStep === props.totalSteps
+);
 </script>

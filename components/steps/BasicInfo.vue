@@ -8,7 +8,7 @@
 				type="text"
 				label="Как к вам обращаться?"
 				placeholder="Ваше имя"
-				v-model="formData.name"
+				v-model="name"
 			/>
 
 			<BaseInput
@@ -16,33 +16,33 @@
 				type="number"
 				label="Возраст"
 				placeholder="Ваш возраст"
-				v-model="formData.age"
+				v-model="age"
 			/>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { computed } from 'vue';
 import type { FormData } from '@/types/form';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import TitleSection from '@/components/ui/TitleSection.vue';
 import BaseInput from '@/components/ui/BaseInput.vue';
 
 const props = defineProps<{
-	modelValue: Partial<FormData>;
+	modelValue: FormData;
 }>();
 
 const emit = defineEmits<{
-	(e: 'update:modelValue', value: Partial<FormData>): void;
+	(e: 'update:modelValue', value: FormData): void;
 }>();
 
-const formData = ref<Partial<FormData>>({
-	name: props.modelValue.name || '',
-	age: props.modelValue.age || null,
+const name = computed({
+	get: () => props.modelValue.name,
+	set: (value) => emit('update:modelValue', { ...props.modelValue, name: value })
 });
 
-watch(formData, (newValue) => {
-	emit('update:modelValue', newValue);
-}, {deep: true});
+const age = computed({
+	get: () => props.modelValue.age,
+	set: (value) => emit('update:modelValue', { ...props.modelValue, age: value })
+});
 </script>

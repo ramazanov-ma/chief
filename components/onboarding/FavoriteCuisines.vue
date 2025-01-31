@@ -1,5 +1,4 @@
-﻿<!-- components/steps/FavoriteCuisines.vue -->
-<template>
+﻿<template>
 	<div class="space-y-6">
 		<div>
 			<TitleSection icon="globe">Какие кухни вам нравятся?</TitleSection>
@@ -28,17 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
+import { computed, defineProps, defineEmits, watch } from 'vue';
 import type { FormData } from '@/types/form';
 import TitleSection from '@/components/ui/TitleSection.vue';
-
-const props = defineProps<{
-	modelValue: FormData;
-}>();
-
-const emit = defineEmits<{
-	'update:modelValue': [value: FormData];
-}>();
 
 const cuisines = [
 	{ id: 'russian', name: 'Русская', emoji: '🥘' },                 // Традиционная русская кухня
@@ -58,6 +49,21 @@ const cuisines = [
 	{ id: 'french', name: 'Французская', emoji: '🥐' },              // Круассаны, багеты
 	{ id: 'mexican', name: 'Мексиканская', emoji: '🌮' }             // Тако, буррито
 ];
+
+const props = defineProps<{
+	modelValue: FormData;
+}>();
+
+const emit = defineEmits<{
+	'update:modelValue': [value: FormData];
+	'validate': [isValid: boolean];
+}>();
+
+const isValid = computed(() => props.modelValue.cuisines.length > 0);
+
+watch(() => props.modelValue.cuisines, () => {
+	emit('validate', isValid.value);
+}, { immediate: true });
 
 const toggleCuisine = (id: string) => {
 	const currentCuisines = [...props.modelValue.cuisines];

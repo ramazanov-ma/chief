@@ -18,6 +18,7 @@
 				<StepButtons
 					:current-step="currentStep"
 					:total-steps="totalSteps"
+					:is-step-valid="isCurrentStepValid"
 					@next="nextStep"
 					@prev="prevStep"
 				/>
@@ -47,7 +48,7 @@ const defaultFormData: FormData = {
 	age: null,
 	cuisines: [],
 	cookingExperience: 'beginner',
-	restrictions: [],
+	restrictions: ['no_restrictions'],
 	caloriesPreference: {
 		min: 1500,
 		max: 2500
@@ -57,7 +58,7 @@ const defaultFormData: FormData = {
 	budget: 5000
 };
 
-const formData = ref<FormData>({ ...defaultFormData });
+const formData = ref<FormData>(structuredClone(defaultFormData));
 
 const currentStepComponent = computed(() => {
 	switch (currentStep.value) {
@@ -76,7 +77,22 @@ const currentStepComponent = computed(() => {
 	}
 });
 
-// Save progress to localStorage
+const isCurrentStepValid = computed(() => {
+	if (currentStep.value === FORM_STEPS.BASIC_INFO) {
+		return formData.value.name?.length > 0 && formData.value.age !== null;
+	}
+
+	if (currentStep.value === FORM_STEPS.COOKING_EXPERIENCE) {
+		return formData.value.cookingExperience?.length > 0;
+	}
+
+	if (currentStep.value === FORM_STEPS.FAVORITE_CUISINES) {
+		return formData.value.cuisines.length > 0;
+	}
+
+	return true;
+});
+
 const saveProgress = () => {
 	localStorage.setItem(FORM_STEPS.FORM_PROGRESS_KEY, JSON.stringify({
 		currentStep: currentStep.value,
@@ -84,19 +100,19 @@ const saveProgress = () => {
 	}));
 };
 
-// Load progress from localStorage
 const loadProgress = () => {
 	const savedProgress = localStorage.getItem(FORM_STEPS.FORM_PROGRESS_KEY);
 
 	if (savedProgress) {
 		const { currentStep: savedStep, formData: savedData } = JSON.parse(savedProgress);
-		currentStep.value = Number(savedStep); // Convert to number here
+		currentStep.value = Number(savedStep);
 		formData.value = savedData;
 	}
 };
 
-// Now these can remain simple
 const nextStep = () => {
+	if (!isCurrentStepValid.value) return;
+
 	if (currentStep.value < totalSteps) {
 		currentStep.value++;
 		saveProgress();
@@ -110,7 +126,6 @@ const prevStep = () => {
 	}
 };
 
-// Load progress when component mounts
 onMounted(() => {
 	loadProgress();
 });
