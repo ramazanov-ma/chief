@@ -34,11 +34,11 @@ import { FORM_STEPS } from '@/constants/steps';
 import ProgressBar from '@/components/ui/ProgressBar.vue';
 import StepButtons from '@/components/navigation/StepButtons.vue';
 
-import BasicInfo from './steps/BasicInfo.vue';
+import BasicInfo from '@/components/onboarding/BasicInfo.vue';
 import CookingExperience from '@/components/onboarding/CookingExperience.vue';
 import FavoriteCuisines from '@/components/onboarding/FavoriteCuisines.vue';
-import DietaryInfo from './steps/DietaryInfo.vue';
-import Planning from './steps/Planning.vue';
+import DietaryInfo from '@/components/onboarding/DietaryInfo.vue';
+import Planning from '@/components/onboarding/Planning.vue';
 
 const currentStep = ref<number>(FORM_STEPS.BASIC_INFO);
 const totalSteps = FORM_STEPS.TOTAL;
