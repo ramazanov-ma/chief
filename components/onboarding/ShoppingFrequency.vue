@@ -15,7 +15,7 @@
                         ? 'border-blue-500 bg-blue-50'
                         : 'border-gray-200 hover:border-blue-300'
                 ]"
-				@click="updateFrequency(option.value)"
+				@click="updateFrequency(option.value as 'once' | 'twice' | 'daily')"
 			>
 				<div class="flex flex-col items-center gap-2 text-center">
 					<div class="text-2xl">{{ option.emoji }}</div>
@@ -60,7 +60,7 @@ const emit = defineEmits<{
 	(e: 'update:modelValue', value: FormData): void;
 }>();
 
-const updateFrequency = (value: string) => {
+const updateFrequency = (value: 'once' | 'twice' | 'daily') => {
 	emit('update:modelValue', { ...props.modelValue, shoppingFrequency: value });
 };
 </script>

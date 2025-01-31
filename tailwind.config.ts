@@ -18,7 +18,16 @@
 			animation: {
 				'float': 'float 6s ease-in-out infinite',
 				'bounce-slow': 'bounce-slow 4s ease-in-out infinite',
+				'spin-slow': 'spin 8s linear infinite',
 			},
+			keyframes: {
+				float: {
+					'0%': { transform: 'translate(0, 0) scale(1)', opacity: '0' },
+					'25%': { opacity: '1' },
+					'75%': { opacity: '1' },
+					'100%': { transform: 'translate(0, -100px) scale(0.5)', opacity: '0' }
+				}
+			}
 		}
 	},
 	safelist: [

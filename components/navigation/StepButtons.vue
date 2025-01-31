@@ -16,16 +16,19 @@
 			:disabled="!isStepValid"
 			:variant="isStepValid ? 'primary' : 'secondary'"
 			:class="[!isStepValid && 'opacity-50 cursor-not-allowed bg-gray-300 hover:bg-gray-300 from-gray-400 to-gray-400']"
-			@click="$emit('next')"
+			@click="next"
 		>
 			{{ isLastStep ? 'Завершить' : 'Далее' }}
 		</BaseButton>
+
+		<ProcessingAnimation v-if="isFormCompleted"/>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import BaseButton from '../ui/BaseButton.vue';
+import ProcessingAnimation from '@/components/onboarding/ProcessingAnimation.vue';
 
 interface Props {
 	currentStep: number;
@@ -34,8 +37,9 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const isFormCompleted = ref(false);
 
-defineEmits<{
+const emit = defineEmits<{
 	(e: 'next'): void;
 	(e: 'prev'): void;
 }>();
@@ -43,4 +47,12 @@ defineEmits<{
 const isLastStep = computed(() =>
 	props.currentStep === props.totalSteps
 );
+
+const next = (): void => {
+	if (isLastStep.value) {
+		isFormCompleted.value = true;
+	} else {
+		emit('next');
+	}
+};
 </script>
