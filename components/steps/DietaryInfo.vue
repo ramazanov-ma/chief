@@ -1,8 +1,10 @@
 ﻿<!-- components/steps/DietaryInfo.vue -->
 <template>
 	<div class="space-y-6">
-		<h2 class="text-2xl font-bold">Есть ли у вас ограничения в питании?</h2>
-		<p class="text-gray-600">Выберите подходящие варианты</p>
+		<div>
+			<TitleSection icon="clipboard-check">Есть ли у вас ограничения в питании?</TitleSection>
+			<p class="m-2 text-gray-600 text-sm text-center">Выберите подходящие варианты</p>
+		</div>
 
 		<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 			<div
@@ -30,6 +32,7 @@
 
 <script setup lang="ts">
 import type { FormData } from '@/types/form';
+import TitleSection from '@/components/ui/TitleSection.vue';
 
 const props = defineProps<{
 	modelValue: FormData;

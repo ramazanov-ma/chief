@@ -43,6 +43,7 @@ import {
 	faFire,
 	faUserGear,
 	faCalculator,
+	faClipboardCheck
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -87,6 +88,7 @@ library.add(
 	faFire,
 	faUserGear,
 	faCalculator,
+	faClipboardCheck
 );
 
 export default defineNuxtPlugin((app) => {
