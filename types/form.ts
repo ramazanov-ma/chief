@@ -9,6 +9,6 @@
 		max: number;
 	};
 	cookingTime: number;
-	shoppingFrequency: string;
+	shoppingFrequency: 'once' | 'twice' | 'daily';
 	budget: number;
 }

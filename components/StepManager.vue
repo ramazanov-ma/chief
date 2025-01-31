@@ -38,7 +38,9 @@ import BasicInfo from '@/components/onboarding/BasicInfo.vue';
 import CookingExperience from '@/components/onboarding/CookingExperience.vue';
 import FavoriteCuisines from '@/components/onboarding/FavoriteCuisines.vue';
 import DietaryInfo from '@/components/onboarding/DietaryInfo.vue';
-import Planning from '@/components/onboarding/Planning.vue';
+import CookingTime from '@/components/onboarding/CookingTime.vue';
+import ShoppingFrequency from '@/components/onboarding/ShoppingFrequency.vue';
+import Budget from '@/components/onboarding/Budget.vue';
 
 const currentStep = ref<number>(FORM_STEPS.BASIC_INFO);
 const totalSteps = FORM_STEPS.TOTAL;
@@ -54,7 +56,7 @@ const defaultFormData: FormData = {
 		max: 2500
 	},
 	cookingTime: 30,
-	shoppingFrequency: 'weekly',
+	shoppingFrequency: 'once',
 	budget: 5000
 };
 
@@ -70,8 +72,12 @@ const currentStepComponent = computed(() => {
 			return FavoriteCuisines;
 		case FORM_STEPS.DIETARY_INFO:
 			return DietaryInfo;
-		case FORM_STEPS.PLANNING:
-			return Planning;
+		case FORM_STEPS.COOKING_TIME:
+			return CookingTime;
+		case FORM_STEPS.BUDGET:
+			return Budget;
+		case FORM_STEPS.SHOPPING_FREQUENCY:
+			return ShoppingFrequency;
 		default:
 			return BasicInfo;
 	}
