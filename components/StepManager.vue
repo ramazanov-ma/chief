@@ -31,11 +31,13 @@ import { ref, computed, watch, onMounted } from 'vue';
 import type { FormData } from '@/types/form';
 import { FORM_STEPS } from '@/constants/steps';
 import ProgressBar from '@/components/ui/ProgressBar.vue';
+import StepButtons from '@/components/navigation/StepButtons.vue';
+
 import BasicInfo from './steps/BasicInfo.vue';
-import CulinaryProfile from './steps/CulinaryProfile.vue';
+import CookingExperience from '@/components/onboarding/CookingExperience.vue';
+import FavoriteCuisines from '@/components/onboarding/FavoriteCuisines.vue';
 import DietaryInfo from './steps/DietaryInfo.vue';
 import Planning from './steps/Planning.vue';
-import StepButtons from '@/components/navigation/StepButtons.vue';
 
 const currentStep = ref<number>(FORM_STEPS.BASIC_INFO);
 const totalSteps = FORM_STEPS.TOTAL;
@@ -61,8 +63,10 @@ const currentStepComponent = computed(() => {
 	switch (currentStep.value) {
 		case FORM_STEPS.BASIC_INFO:
 			return BasicInfo;
-		case FORM_STEPS.CULINARY_PROFILE:
-			return CulinaryProfile;
+		case FORM_STEPS.COOKING_EXPERIENCE:
+			return CookingExperience;
+		case FORM_STEPS.FAVORITE_CUISINES:
+			return FavoriteCuisines;
 		case FORM_STEPS.DIETARY_INFO:
 			return DietaryInfo;
 		case FORM_STEPS.PLANNING:
