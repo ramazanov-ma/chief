@@ -35,7 +35,8 @@ export default {
 
 	// Modules: https://go.nuxtjs.dev/config-modules
 	modules: [
-		'@nuxtjs/tailwindcss'
+		'@nuxtjs/tailwindcss',
+		'@pinia/nuxt',
 	],
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build

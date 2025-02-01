@@ -1,38 +1,39 @@
-﻿<template>
-	<div class="min-h-screen bg-gray-50">
-		<DecorativeElements>
-			<div class="container mx-auto px-4 py-12 min-h-screen">
-				<div class="flex justify-center mb-8">
-					<TitleBadge icon="utensils">Умное планирование питания</TitleBadge>
-				</div>
+﻿<!-- pages/index.vue -->
+<template>
+	<div class="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-8">
+		<div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6">
+			<h1 class="text-3xl font-bold text-gray-800 mb-6">
+				Добро пожаловать в Chief!
+			</h1>
+			<div class="space-y-4">
+				<p class="text-gray-600">
+					Ваш персональный помощник в планировании питания
+				</p>
 
-				<div class="text-center mb-8">
-					<TitleGradient>Составим меню вашей мечты вместе</TitleGradient>
-				</div>
-
-				<div class="flex justify-center">
-					<GradientDivider/>
-				</div>
-
-				<div class="mb-8">
-					<ServiceBenefits/>
-				</div>
-
-				<StepManager @form-completed="handleFormCompletion"/>
+				<button
+					@click="resetOnboarding"
+					class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+				>
+					Пройти онбординг заново
+				</button>
 			</div>
-		</DecorativeElements>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import type { FormData } from '@/types/form';
-import TitleGradient from '@/components/ui/TitleGradient.vue';
-import TitleBadge from '@/components/ui/TitleBadge.vue';
-import GradientDivider from '@/components/ui/GradientDivider.vue';
-import StepManager from '@/components/StepManager.vue';
-import ServiceBenefits from '@/components/ServiceBenefits.vue';
+import { useRouter } from 'vue-router';
+import { useOnboardingStore } from '@/stores/onboarding';
 
-const handleFormCompletion = (formData: FormData) => {
-	console.log('Form completed:', formData);
+const router = useRouter();
+const onboardingStore = useOnboardingStore();
+
+const resetOnboarding = () => {
+	onboardingStore.resetOnboarding();
+	router.push('/onboarding');
 };
+
+definePageMeta({
+	middleware: ['onboarding']
+});
 </script>

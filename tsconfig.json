@@ -16,7 +16,8 @@
 		"skipLibCheck": true,
 		"types": [
 			"@types/node",
-			"@nuxt/types"
+			"@nuxt/types",
+			"@nuxt/typescript-build"
 		],
 		"baseUrl": ".",
 		"paths": {

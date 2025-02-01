@@ -9,6 +9,7 @@
 	SHOPPING_FREQUENCY: 8,
 	TOTAL: 8,
 	FORM_PROGRESS_KEY: 'FormProgress',
+	ONBOARDING_COMPLETED_KEY: 'OnboardingCompleted',
 } as const;
 
 export type FormStep = typeof FORM_STEPS[keyof typeof FORM_STEPS];

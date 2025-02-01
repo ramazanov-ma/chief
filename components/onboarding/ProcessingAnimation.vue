@@ -116,7 +116,7 @@ const currentStep = ref(steps[0]);
 const progress = ref(0);
 
 onMounted(() => {
-	const totalDuration = 15000;
+	const totalDuration = 10000;
 	const progressUpdateInterval = 50;
 
 	const progressInterval = setInterval(() => {

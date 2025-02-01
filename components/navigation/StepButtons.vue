@@ -21,7 +21,9 @@
 			{{ isLastStep ? 'Завершить' : 'Далее' }}
 		</BaseButton>
 
-		<ProcessingAnimation v-if="isFormCompleted"/>
+		<ProcessingAnimation
+			v-if="isFormCompleted"
+			@complete="onOnboardingCompleted"/>
 	</div>
 </template>
 
@@ -29,6 +31,8 @@
 import { computed, ref } from 'vue';
 import BaseButton from '../ui/BaseButton.vue';
 import ProcessingAnimation from '@/components/onboarding/ProcessingAnimation.vue';
+import { useRouter } from 'vue-router';
+import { useOnboardingStore } from '@/stores/onboarding';
 
 interface Props {
 	currentStep: number;
@@ -38,6 +42,8 @@ interface Props {
 
 const props = defineProps<Props>();
 const isFormCompleted = ref(false);
+const router = useRouter();
+const onboardingStore = useOnboardingStore();
 
 const emit = defineEmits<{
 	(e: 'next'): void;
@@ -54,5 +60,10 @@ const next = (): void => {
 	} else {
 		emit('next');
 	}
+};
+
+const onOnboardingCompleted = (): void => {
+	onboardingStore.completeOnboarding();
+	router.push('/');
 };
 </script>
