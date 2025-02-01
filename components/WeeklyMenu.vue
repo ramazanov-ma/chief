@@ -1,5 +1,5 @@
 ﻿<template>
-	<div class="bg-white rounded-2xl sm:p-6 shadow-sm border border-gray-100/50">
+	<div class="bg-white rounded-3xl sm:p-6 shadow-sm border border-slate-100">
 		<!-- Адаптивный заголовок -->
 		<div
 			class="space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between"
@@ -9,19 +9,41 @@
 				<div
 					class="flex items-center justify-between sm:justify-start sm:space-x-3"
 				>
-					<div class="flex justify-between items-start space-x-2 w-full">
+					<div class="flex justify-between items-center space-x-2 w-full">
 						<h2 class="text-xl sm:text-xl font-medium text-gray-900">
 							<span class="block">Меню недели</span>
 							<span
 								class="block text-sm text-slate-500"
-							>{{ currentPeriod }}</span
 							>
+								{{ currentPeriod }}
+							</span>
 						</h2>
-						<span
+						<div
 							class="text-sm px-3 py-1 bg-blue-50 text-blue-600 rounded-full"
 						>
-              {{ selectedWeekLabel }}
-            </span>
+							{{ selectedWeekLabel }}
+						</div>
+						<div class="flex flex-col items-end">
+							<!-- Навигация и кнопки -->
+							<div class="flex items-center justify-between sm:justify-end space-x-2">
+								<div class="flex items-center space-x-2">
+									<button
+										@click="changeWeek(-1)"
+										class="px-4 py-2 rounded-lg bg-slate-100 transition-colors"
+										:class="{ 'text-gray-300': isCurrentWeek }"
+										:disabled="isCurrentWeek"
+									>
+										<font-awesome-icon icon="chevron-left"/>
+									</button>
+									<button
+										@click="changeWeek(1)"
+										class="px-4 py-2 rounded-lg bg-slate-100 transition-colors"
+									>
+										<font-awesome-icon icon="chevron-right"/>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<button
@@ -32,40 +54,10 @@
 					Пересоздать меню
 				</button>
 			</div>
-
-			<!-- Навигация и кнопки -->
-			<!--			<div class="flex items-center justify-between sm:justify-end space-x-2">-->
-			<!--				<div class="flex items-center space-x-2">-->
-			<!--					<button-->
-			<!--						@click="changeWeek(-1)"-->
-			<!--						class="p-2 rounded-lg hover:bg-gray-50"-->
-			<!--						:class="{ 'text-gray-300': isCurrentWeek }"-->
-			<!--						:disabled="isCurrentWeek"-->
-			<!--					>-->
-			<!--						<font-awesome-icon icon="chevron-left"/>-->
-			<!--					</button>-->
-
-			<!--					<button-->
-			<!--						@click="changeWeek(1)"-->
-			<!--						class="p-2 rounded-lg hover:bg-gray-50"-->
-			<!--					>-->
-			<!--						<font-awesome-icon icon="chevron-right"/>-->
-			<!--					</button>-->
-
-			<!--					&lt;!&ndash; Кнопка "Пересоздать" для больших экранов &ndash;&gt;-->
-			<!--					<button-->
-			<!--						@click="addMenu"-->
-			<!--						class="hidden sm:flex bg-blue-50 text-blue-600 px-4 py-2 rounded-xl hover:bg-blue-100 transition-colors ml-4 items-center"-->
-			<!--					>-->
-			<!--						<font-awesome-icon icon="plus" class="mr-2"/>-->
-			<!--						Пересоздать-->
-			<!--					</button>-->
-			<!--				</div>-->
-			<!--			</div>-->
 		</div>
 
 		<!-- Дни недели -->
-		<div class="pt-4 space-y-8">
+		<div class="space-y-8">
 			<!-- Увеличили отступ между днями -->
 			<div v-for="day in weekDays" :key="day.name" class="relative px-4">
 				<!-- Разделитель между днями -->
@@ -126,7 +118,10 @@
 											<div class="flex items-start space-x-3">
 												<!-- ... Время и эмодзи ... -->
 												<div class="flex flex-col items-center w-14">
-													<span class="text-base font-medium text-gray-900 bg-white px-2 rounded-full shadow-sm">{{ meal.time }}</span>
+													<span
+														class="text-base font-medium text-gray-900 bg-white px-2 rounded-full shadow-sm">{{
+															meal.time
+														}}</span>
 													<div
 														class="w-10 h-10 rounded-lg bg-white border border-gray-100 shadow-sm flex items-center justify-center mt-1 z-10"
 													>

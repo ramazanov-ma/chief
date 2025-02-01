@@ -48,7 +48,9 @@ import {
 	faBars,
 	faListCheck,
 	faGear,
-	faRotate
+	faRotate,
+	faChevronLeft,
+	faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -98,7 +100,9 @@ library.add(
 	faBars,
 	faListCheck,
 	faGear,
-	faRotate
+	faRotate,
+	faChevronLeft,
+	faChevronRight,
 );
 
 export default defineNuxtPlugin((app) => {
