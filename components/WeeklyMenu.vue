@@ -2,7 +2,7 @@
 	<div class="bg-white rounded-2xl sm:p-6 shadow-sm border border-gray-100/50">
 		<!-- Адаптивный заголовок -->
 		<div
-			class="space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between mb-6 sm:mb-8"
+			class="space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between"
 		>
 			<!-- Текстовая информация -->
 			<div class="flex flex-col space-y-4 p-4">
@@ -26,7 +26,7 @@
 				</div>
 				<button
 					@click="addMenu"
-					class="sm:hidden bg-blue-50 text-blue-600 px-4 py-3 rounded-xl hover:bg-blue-100 transition-colors text-md"
+					class="sm:hidden bg-blue-50 text-blue-600 px-4 py-3 rounded-xl hover:bg-blue-100 transition-colors text-sm"
 				>
 					<font-awesome-icon icon="plus" class="mr-1.5"/>
 					Пересоздать меню
@@ -65,7 +65,7 @@
 		</div>
 
 		<!-- Дни недели -->
-		<div class="space-y-8">
+		<div class="pt-4 space-y-8">
 			<!-- Увеличили отступ между днями -->
 			<div v-for="day in weekDays" :key="day.name" class="relative px-4">
 				<!-- Разделитель между днями -->
@@ -102,20 +102,20 @@
 								</h3>
 
 								<button
-									v-if="!day.meals.length"
-									@click="addMealToDay(day)"
-									class="text-sm px-4 py-2 rounded-lg bg-white border border-gray-100 text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
+									@click="regenerateDay(day)"
+									class="w-10 h-10 rounded-lg bg-white border border-gray-100 text-blue-600
+         hover:bg-blue-50 transition-colors shadow-sm"
+									title="Пересоздать день"
 								>
-									Добавить блюдо
+									<font-awesome-icon icon="rotate"/>
 								</button>
 							</div>
 
 							<!-- Список блюд -->
 							<div class="space-y-4 mt-4" v-if="day.meals.length">
 								<div class="relative">
-									<div
-										class="absolute left-[1.65rem] top-0 bottom-0 w-px bg-blue-100/50"
-									></div>
+									<div class="absolute left-[1.65rem] top-0 bottom-0 w-px"></div>
+
 
 									<div class="space-y-6">
 										<div
@@ -126,10 +126,7 @@
 											<div class="flex items-start space-x-3">
 												<!-- ... Время и эмодзи ... -->
 												<div class="flex flex-col items-center w-14">
-                          <span
-	                          class="text-base font-medium text-gray-900 bg-white px-2"
-                          >{{ meal.time }}</span
-                          >
+													<span class="text-base font-medium text-gray-900 bg-white px-2 rounded-full shadow-sm">{{ meal.time }}</span>
 													<div
 														class="w-10 h-10 rounded-lg bg-white border border-gray-100 shadow-sm flex items-center justify-center mt-1 z-10"
 													>
@@ -381,5 +378,9 @@ const addMealToDay = (dayIndex: number) => {
 const replaceMeal = (date: string, mealId: number) => {
 	// Здесь логика замены блюда
 	console.log('Замена блюда:', date, mealId);
+};
+
+const regenerateDay = (day: Day) => {
+	// day.meals = generateMealsForDay(); // Функция генерации блюд
 };
 </script>
