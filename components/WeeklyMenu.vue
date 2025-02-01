@@ -2,8 +2,14 @@
 	<div class="bg-white rounded-3xl sm:p-6 shadow-sm border border-slate-100">
 		<!-- Адаптивный заголовок -->
 		<div
-			class="space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between"
+			class="sm:flex sm:items-center sm:justify-between"
 		>
+			<div class="pt-4 flex justify-center items-center">
+				<div class="flex items-center text-sm px-4 py-1 bg-blue-50 text-blue-600 font-normal rounded-full">
+					<font-awesome-icon icon="calendar-check" class="mr-1.5"/>
+					{{ selectedWeekLabel }}
+				</div>
+			</div>
 			<!-- Текстовая информация -->
 			<div class="flex flex-col space-y-4 p-4">
 				<div
@@ -18,11 +24,6 @@
 								{{ currentPeriod }}
 							</span>
 						</h2>
-						<div
-							class="text-sm px-3 py-1 bg-blue-50 text-blue-600 rounded-full"
-						>
-							{{ selectedWeekLabel }}
-						</div>
 						<div class="flex flex-col items-end">
 							<!-- Навигация и кнопки -->
 							<div class="flex items-center justify-between sm:justify-end space-x-2">
@@ -57,14 +58,10 @@
 		</div>
 
 		<!-- Дни недели -->
-		<div class="space-y-8">
-			<!-- Увеличили отступ между днями -->
-			<div v-for="day in weekDays" :key="day.name" class="relative px-4">
+		<div class="">
+			<div v-for="day in weekDays" :key="day.name" class="relative p-4">
 				<!-- Разделитель между днями -->
-				<div
-					v-if="!day.isLast"
-					class="absolute left-0 right-0 bottom-0 h-px bg-gray-100 transform translate-y-4"
-				></div>
+				<div class="absolute left-0 right-0 -top-4 h-px bg-slate-100 transform translate-y-4"></div>
 
 				<!-- День недели -->
 				<div class="transition-colors">
@@ -80,7 +77,7 @@
 										<span class="text-md">{{ day.name }}</span>
 										<span
 											v-if="day.isToday"
-											class="px-2 py-1 bg-blue-100 rounded-full text-blue-600 text-xs text-normal ml-2"
+											class="pl-3 pr-4 py-1 bg-blue-100 rounded-full text-blue-600 text-xs font-normal text-center ml-2"
 										>
 											Сегодня
 										</span>

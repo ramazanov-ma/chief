@@ -4,7 +4,7 @@
 			<!-- Приветствие -->
 			<div class="flex items-center space-x-4">
 				<div class="flex-shrink-0">
-					<div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
+					<div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
 						<font-awesome-icon
 							icon="user"
 							class="text-blue-500 text-xl"
