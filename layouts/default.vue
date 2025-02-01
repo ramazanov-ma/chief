@@ -1,8 +1,8 @@
 ﻿<!-- layouts/default.vue -->
 <template>
-	<div class="min-h-screen bg-gray-100">
+	<div class="min-h-screen bg-slate-100">
 		<!-- Основной контент -->
-		<main class="pb-[68px]">
+		<main>
 			<slot/>
 		</main>
 
