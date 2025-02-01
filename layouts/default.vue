@@ -8,7 +8,7 @@
 
 		<!-- Плавающая навигация -->
 		<nav
-			class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-full shadow-lg shadow-black/[0.08] backdrop-blur-xl px-6 py-2 w-[280px]">
+			class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-full shadow-lg shadow-black/[0.08] backdrop-blur-xl px-6 py-2 w-[240px]">
 			<div class="flex justify-between">
 				<!-- Меню -->
 				<NuxtLink
@@ -17,12 +17,12 @@
 					active-class="active-nav-link"
 				>
 					<div class="flex flex-col items-center">
-						<div class="relative w-10 h-10 flex items-center justify-center">
+						<div class="relative w-12 h-12 flex items-center justify-center">
 							<div
 								class="absolute inset-0 rounded-lg bg-blue-50 opacity-0 scale-75 group-[.active-nav-link]:opacity-100 group-[.active-nav-link]:scale-100 transition-all duration-200"></div>
 							<font-awesome-icon
 								icon="bars"
-								class="text-lg relative transition-all duration-200 group-hover:scale-105"
+								class="text-xl relative transition-all duration-200 group-hover:scale-105"
 							/>
 						</div>
 					</div>
@@ -35,12 +35,12 @@
 					active-class="active-nav-link"
 				>
 					<div class="flex flex-col items-center">
-						<div class="relative w-10 h-10 flex items-center justify-center">
+						<div class="relative w-12 h-12 flex items-center justify-center">
 							<div
 								class="absolute inset-0 rounded-lg bg-blue-50 opacity-0 scale-75 group-[.active-nav-link]:opacity-100 group-[.active-nav-link]:scale-100 transition-all duration-200"></div>
 							<font-awesome-icon
 								icon="list-check"
-								class="text-lg relative transition-all duration-200 group-hover:scale-105"
+								class="text-xl relative transition-all duration-200 group-hover:scale-105"
 							/>
 						</div>
 					</div>
@@ -53,12 +53,12 @@
 					active-class="active-nav-link"
 				>
 					<div class="flex flex-col items-center">
-						<div class="relative w-10 h-10 flex items-center justify-center">
+						<div class="relative w-12 h-12 flex items-center justify-center">
 							<div
 								class="absolute inset-0 rounded-lg bg-blue-50 opacity-0 scale-75 group-[.active-nav-link]:opacity-100 group-[.active-nav-link]:scale-100 transition-all duration-200"></div>
 							<font-awesome-icon
 								icon="gear"
-								class="text-lg relative transition-all duration-200 group-hover:scale-105"
+								class="text-xl relative transition-all duration-200 group-hover:scale-105"
 							/>
 						</div>
 					</div>
