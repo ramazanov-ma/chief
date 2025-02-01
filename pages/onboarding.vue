@@ -37,6 +37,7 @@ const handleFormCompletion = (formData: FormData) => {
 };
 
 definePageMeta({
+	layout: 'onboarding',
 	middleware: ['onboarding']
 });
 </script>
