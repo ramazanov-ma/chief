@@ -1,5 +1,5 @@
 ﻿<template>
-	<header class="px-6 py-6">
+	<header class="pt-2 pb-6">
 		<div class="max-w-2xl">
 			<!-- Приветствие -->
 			<div class="flex items-center space-x-4">
@@ -12,10 +12,10 @@
 					</div>
 				</div>
 				<div>
-					<h1 class="text-2xl font-medium text-gray-900">
+					<h1 class="text-xl font-medium text-gray-900">
 						{{ greeting }}, Марат!
 					</h1>
-					<p class="text-gray-500">
+					<p class="text-sm text-gray-500">
 						{{ currentDate }}
 					</p>
 				</div>

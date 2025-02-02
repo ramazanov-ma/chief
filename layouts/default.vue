@@ -1,67 +1,27 @@
-﻿<!-- layouts/default.vue -->
-<template>
-	<div class="min-h-screen bg-slate-100">
-		<!-- Основной контент -->
-		<main>
+﻿<template>
+	<div class="min-h-screen bg-gray-50">
+
+		<!-- Добавляем отступ снизу на мобильных для нижнего меню -->
+		<main class="flex-1 p-4 pb-20 md:pb-4">
 			<slot/>
 		</main>
 
-		<!-- Плавающая навигация -->
-		<nav
-			class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-full shadow-lg shadow-black/[0.08] backdrop-blur-xl px-6 py-2 w-[240px]">
-			<div class="flex justify-between">
-				<!-- Меню -->
+		<!-- Нижнее мобильное меню -->
+		<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 md:hidden z-10">
+			<div class="flex items-center justify-around h-16">
 				<NuxtLink
-					to="/"
-					class="group flex items-center justify-center w-16"
-					active-class="active-nav-link"
-				>
-					<div class="flex flex-col items-center">
-						<div class="relative w-12 h-12 flex items-center justify-center">
-							<div
-								class="absolute inset-0 rounded-lg bg-blue-50 opacity-0 scale-75 group-[.active-nav-link]:opacity-100 group-[.active-nav-link]:scale-100 transition-all duration-200"></div>
-							<font-awesome-icon
-								icon="bars"
-								class="text-xl relative transition-all duration-200 group-hover:scale-105"
-							/>
-						</div>
-					</div>
-				</NuxtLink>
-
-				<!-- Список покупок -->
-				<NuxtLink
-					to="/shopping-list"
-					class="group flex items-center justify-center w-16"
-					active-class="active-nav-link"
-				>
-					<div class="flex flex-col items-center">
-						<div class="relative w-12 h-12 flex items-center justify-center">
-							<div
-								class="absolute inset-0 rounded-lg bg-blue-50 opacity-0 scale-75 group-[.active-nav-link]:opacity-100 group-[.active-nav-link]:scale-100 transition-all duration-200"></div>
-							<font-awesome-icon
-								icon="list-check"
-								class="text-xl relative transition-all duration-200 group-hover:scale-105"
-							/>
-						</div>
-					</div>
-				</NuxtLink>
-
-				<!-- Настройки -->
-				<NuxtLink
-					to="/preferences"
-					class="group flex items-center justify-center w-16"
-					active-class="active-nav-link"
-				>
-					<div class="flex flex-col items-center">
-						<div class="relative w-12 h-12 flex items-center justify-center">
-							<div
-								class="absolute inset-0 rounded-lg bg-blue-50 opacity-0 scale-75 group-[.active-nav-link]:opacity-100 group-[.active-nav-link]:scale-100 transition-all duration-200"></div>
-							<font-awesome-icon
-								icon="gear"
-								class="text-xl relative transition-all duration-200 group-hover:scale-105"
-							/>
-						</div>
-					</div>
+					v-for="item in menuItems"
+					:key="item.path"
+					:to="item.path"
+					class="flex flex-col items-center justify-center flex-1 h-full px-2 transition-colors"
+					:class="[isActive(item.path) ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900']">
+					<font-awesome-icon
+						:icon="item.icon"
+						class="h-5 w-5"
+					/>
+					<span class="mt-1 text-xs font-medium">
+						{{ item.name }}
+					</span>
 				</NuxtLink>
 			</div>
 		</nav>
@@ -69,36 +29,53 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+const route = useRoute();
+const menuItems = [
+	{
+		name: 'Главная',
+		path: '/',
+		icon: 'home'
+	},
+	{
+		name: 'Меню',
+		path: '/menu',
+		icon: 'utensils'
+	},
+	{
+		name: 'Список покупок',
+		path: '/shopping-list',
+		icon: 'book'
+	},
+	{
+		name: 'Профиль',
+		path: '/preferences',
+		icon: 'user'
+	}
+];
+
+const isActive = (path: string) => route.path === path;
 </script>
 
 <style scoped>
-.active-nav-link {
-	@apply text-blue-600;
+.router-link-active .h-6 {
+	animation: bounce 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Базовый цвет для неактивных элементов */
-nav {
-	@apply text-gray-400 border border-gray-100/50;
-}
-
-/* Hover эффект только для десктопа */
-@media (hover: hover) {
-	nav a:hover {
-		@apply text-gray-600;
+@keyframes bounce {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-3px);
 	}
 }
 
-/* Отключаем стандартные эффекты на мобильных */
-nav {
-	-webkit-tap-highlight-color: transparent;
-	user-select: none;
-}
-
-/* Добавляем стеклянный эффект */
-nav {
-	background: rgba(255, 255, 255, 0.95);
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+	nav {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
 }
 </style>
