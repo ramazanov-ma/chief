@@ -15,7 +15,7 @@
 					<h1 class="text-xl font-medium text-gray-900">
 						{{ greeting }}, Марат!
 					</h1>
-					<p class="text-sm text-gray-500">
+					<p class="text-sm text-slate-500 font-normal">
 						{{ currentDate }}
 					</p>
 				</div>

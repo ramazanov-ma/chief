@@ -16,10 +16,10 @@
 					class="flex items-center justify-between sm:justify-start sm:space-x-3"
 				>
 					<div class="flex justify-between items-center space-x-2 w-full">
-						<h2 class="text-xl sm:text-xl font-medium text-gray-900">
+						<h2 class="text-xl sm:text-xl font-medium text-blue-600">
 							<span class="block">Меню недели</span>
 							<span
-								class="block text-sm text-slate-500"
+								class="block text-sm font-normal text-slate-500"
 							>
 								{{ currentPeriod }}
 							</span>
