@@ -1,9 +1,7 @@
 ﻿<template>
-	<div class="bg-white rounded-3xl sm:p-6 shadow-sm border border-slate-200">
+	<div>
 		<!-- Адаптивный заголовок -->
-		<div
-			class="sm:flex sm:items-center sm:justify-between"
-		>
+		<div class="sm:flex sm:items-center sm:justify-between border border-slate-200 bg-white rounded-3xl shadow-sm">
 			<div class="pt-4 flex justify-center items-center">
 				<div class="flex items-center text-sm px-4 py-1 bg-blue-50 text-blue-600 font-normal rounded-full">
 					<font-awesome-icon icon="calendar-check" class="mr-1.5"/>
@@ -56,23 +54,18 @@
 		</div>
 
 		<!-- Дни недели -->
-		<div class="">
-			<div v-for="day in weekDays" :key="day.name" class="relative p-4">
-				<!-- Разделитель между днями -->
-				<div class="absolute left-0 right-0 -top-4 h-px bg-slate-200 transform translate-y-4"></div>
-
-				<!-- День недели -->
-				<div class="transition-colors">
-					<div class="flex items-start space-x-4">
-						<!-- Контент дня -->
-						<div class="flex-1 min-w-0">
-							<div class="flex items-center justify-between">
-								<h3
-									class="text-base font-medium"
-									:class="{ 'text-blue-600': day.isToday, 'text-gray-900': !day.isToday }"
-								>
+		<div v-for="day in weekDays" :key="day.name"
+		     class="relative py-6 px-4 mt-4 bg-white border rounded-3xl shadow-sm"
+		     :class="{ 'border-blue-500': day.isToday, 'border-slate-200': !day.isToday }">
+			<!-- День недели -->
+			<div class="transition-colors">
+				<div class="flex items-start space-x-4">
+					<!-- Контент дня -->
+					<div class="flex-1 min-w-0">
+						<div class="flex items-center justify-between">
+							<h3 :class="{ 'text-blue-600': day.isToday, 'text-gray-900': !day.isToday }">
 									<span class="block">
-										<span class="text-md">{{ day.name }}</span>
+										<span class="font-medium text-lg">{{ day.name }}</span>
 										<span
 											v-if="day.isToday"
 											class="pl-3 pr-4 py-1 bg-blue-100 rounded-full text-blue-600 text-xs font-normal text-center ml-2"
@@ -80,84 +73,81 @@
 											Сегодня
 										</span>
 									</span>
-									<span
-										class="block text-sm font-normal text-gray-500"
-										:class="{ 'text-blue-500': day.isToday, 'text-gray-500': !day.isToday }"
-									>
+								<span
+									class="block text-sm font-normal text-gray-500"
+									:class="{ 'text-blue-500': day.isToday, 'text-gray-500': !day.isToday }"
+								>
 										{{ day.date }}
 									</span>
-								</h3>
+							</h3>
 
-								<button
-									@click="regenerateDay(day)"
-									class="w-10 h-10 rounded-lg bg-white border border-gray-100 text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
-									title="Пересоздать день"
-								>
-									<font-awesome-icon icon="rotate"/>
-								</button>
-							</div>
+							<button
+								@click="regenerateDay(day)"
+								class="w-10 h-10 rounded-lg bg-white border border-gray-100 text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
+								title="Пересоздать день"
+							>
+								<font-awesome-icon icon="rotate"/>
+							</button>
+						</div>
 
-							<!-- Список блюд -->
-							<div class="space-y-4 mt-4" v-if="day.meals.length">
-								<div class="relative">
-									<div class="absolute left-[1.65rem] top-0 bottom-0 w-px"></div>
-
-
-									<div class="space-y-6">
-										<div
-											v-for="meal in day.meals"
-											:key="meal.id"
-											class="relative group"
-										>
-											<div class="flex items-start space-x-3">
-												<!-- ... Время и эмодзи ... -->
-												<div class="flex flex-col items-center w-14">
+						<!-- Список блюд -->
+						<div class="space-y-4 mt-4" v-if="day.meals.length">
+							<div class="relative">
+								<div class="absolute left-[1.65rem] top-0 bottom-0 w-px"></div>
+								<div class="space-y-4">
+									<div
+										v-for="meal in day.meals"
+										:key="meal.id"
+										class="relative group"
+									>
+										<div class="flex items-start space-x-3">
+											<!-- ... Время и эмодзи ... -->
+											<div class="flex flex-col items-center w-14">
 													<span
 														class="text-base font-medium text-gray-900 bg-white px-2 rounded-full border border-slate-200"
 													>
 														{{ meal.time }}
 													</span>
-													<div
-														class="w-10 h-10 rounded-lg bg-white border border-slate-200 shadow-sm flex items-center justify-center mt-1 z-10">
-														<span class="text-xl">{{ meal.emoji }}</span>
-													</div>
+												<div
+													class="w-10 h-10 rounded-lg bg-white border border-slate-200 shadow-sm flex items-center justify-center mt-1 z-10">
+													<span class="text-xl">{{ meal.emoji }}</span>
 												</div>
+											</div>
 
-												<!-- Карточка блюда -->
-												<div class="flex-1 min-w-0">
+											<!-- Карточка блюда -->
+											<div class="flex-1 min-w-0">
+												<div
+													class="bg-white border border-slate-200 rounded-xl p-4 group-hover:bg-gray-50 transition-colors shadow-sm"
+												>
 													<div
-														class="bg-white border border-slate-200 rounded-xl p-4 group-hover:bg-gray-50 transition-colors shadow-sm"
+														class="flex items-start justify-between space-x-2"
 													>
-														<div
-															class="flex items-start justify-between space-x-2"
+														<h3
+															class="text-base font-medium text-gray-900 truncate"
 														>
-															<h3
-																class="text-base font-medium text-gray-900 truncate"
-															>
-																{{ meal.name }}
-															</h3>
-														</div>
+															{{ meal.name }}
+														</h3>
+													</div>
 
-														<p class="text-sm text-gray-600 mt-1 mb-3">
-															{{ meal.description }}
-														</p>
+													<p class="text-sm text-gray-600 mt-1 mb-3">
+														{{ meal.description }}
+													</p>
 
-														<div class="flex items-center flex-wrap gap-4">
+													<div class="flex items-center flex-wrap gap-4">
                               <span class="text-sm font-medium text-gray-700">
                                 🔥 {{ meal.calories }} ккал
                               </span>
-															<span class="text-sm font-medium text-gray-700">
+														<span class="text-sm font-medium text-gray-700">
                                 ⏱️ {{ meal.cookingTime }} мин
                               </span>
 
-															<div class="flex items-center gap-4 ml-auto">
-																<button
-																	class="text-sm font-medium text-blue-600 hover:text-blue-900 rounded-lg transition-colors"
-																	@click="replaceMeal(day.date, meal.id)"
-																>
-																	Заменить
-																</button>
-															</div>
+														<div class="flex items-center gap-4 ml-auto">
+															<button
+																class="text-sm font-medium text-blue-600 hover:text-blue-900 rounded-lg transition-colors"
+																@click="replaceMeal(day.date, meal.id)"
+															>
+																Заменить
+															</button>
 														</div>
 													</div>
 												</div>
@@ -267,7 +257,7 @@ const weekDays = computed(() => {
 			date: formatDate(date), // Например: "1 февраля"
 			isToday: isToday,
 			isLast: index === days.length - 1,
-			meals: isToday ? exampleMeals : []
+			meals: exampleMeals
 		};
 	});
 });
