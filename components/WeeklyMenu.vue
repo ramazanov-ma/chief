@@ -1,5 +1,5 @@
 ﻿<template>
-	<div class="bg-white rounded-3xl sm:p-6 shadow-sm border border-slate-100">
+	<div class="bg-white rounded-3xl sm:p-6 shadow-sm border border-slate-200">
 		<!-- Адаптивный заголовок -->
 		<div
 			class="sm:flex sm:items-center sm:justify-between"
@@ -16,7 +16,7 @@
 					class="flex items-center justify-between sm:justify-start sm:space-x-3"
 				>
 					<div class="flex justify-between items-center space-x-2 w-full">
-						<h2 class="text-xl sm:text-xl font-medium text-blue-600">
+						<h2 class="text-2xl font-medium">
 							<span class="block">Меню недели</span>
 							<span
 								class="block text-sm font-normal text-slate-500"
@@ -30,15 +30,13 @@
 								<div class="flex items-center space-x-2">
 									<button
 										@click="changeWeek(-1)"
-										class="px-4 py-2 rounded-lg bg-slate-100 transition-colors"
-										:class="{ 'text-gray-300': isCurrentWeek }"
-										:disabled="isCurrentWeek"
+										class="px-4 py-2 rounded-lg bg-slate-100 transition-colors text-slate-500 hover:bg-slate-200"
 									>
 										<font-awesome-icon icon="chevron-left"/>
 									</button>
 									<button
 										@click="changeWeek(1)"
-										class="px-4 py-2 rounded-lg bg-slate-100 transition-colors"
+										class="px-4 py-2 rounded-lg bg-slate-100 transition-colors text-slate-500 hover:bg-slate-200"
 									>
 										<font-awesome-icon icon="chevron-right"/>
 									</button>
@@ -61,7 +59,7 @@
 		<div class="">
 			<div v-for="day in weekDays" :key="day.name" class="relative p-4">
 				<!-- Разделитель между днями -->
-				<div class="absolute left-0 right-0 -top-4 h-px bg-slate-100 transform translate-y-4"></div>
+				<div class="absolute left-0 right-0 -top-4 h-px bg-slate-200 transform translate-y-4"></div>
 
 				<!-- День недели -->
 				<div class="transition-colors">
@@ -92,8 +90,7 @@
 
 								<button
 									@click="regenerateDay(day)"
-									class="w-10 h-10 rounded-lg bg-white border border-gray-100 text-blue-600
-         hover:bg-blue-50 transition-colors shadow-sm"
+									class="w-10 h-10 rounded-lg bg-white border border-gray-100 text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
 									title="Пересоздать день"
 								>
 									<font-awesome-icon icon="rotate"/>
@@ -116,12 +113,12 @@
 												<!-- ... Время и эмодзи ... -->
 												<div class="flex flex-col items-center w-14">
 													<span
-														class="text-base font-medium text-gray-900 bg-white px-2 rounded-full shadow-sm">{{
-															meal.time
-														}}</span>
-													<div
-														class="w-10 h-10 rounded-lg bg-white border border-gray-100 shadow-sm flex items-center justify-center mt-1 z-10"
+														class="text-base font-medium text-gray-900 bg-white px-2 rounded-full border border-slate-200"
 													>
+														{{ meal.time }}
+													</span>
+													<div
+														class="w-10 h-10 rounded-lg bg-white border border-slate-200 shadow-sm flex items-center justify-center mt-1 z-10">
 														<span class="text-xl">{{ meal.emoji }}</span>
 													</div>
 												</div>
@@ -129,7 +126,7 @@
 												<!-- Карточка блюда -->
 												<div class="flex-1 min-w-0">
 													<div
-														class="bg-white border border-gray-100 rounded-xl p-4 group-hover:bg-gray-50 transition-colors shadow-sm"
+														class="bg-white border border-slate-200 rounded-xl p-4 group-hover:bg-gray-50 transition-colors shadow-sm"
 													>
 														<div
 															class="flex items-start justify-between space-x-2"
@@ -155,7 +152,7 @@
 
 															<div class="flex items-center gap-4 ml-auto">
 																<button
-																	class="px-3 py-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
+																	class="text-sm font-medium text-blue-600 hover:text-blue-900 rounded-lg transition-colors"
 																	@click="replaceMeal(day.date, meal.id)"
 																>
 																	Заменить

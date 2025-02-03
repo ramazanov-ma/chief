@@ -1,5 +1,5 @@
 ﻿<template>
-	<div class="min-h-screen bg-gray-50">
+	<div class="min-h-screen bg-slate-100">
 
 		<!-- Добавляем отступ снизу на мобильных для нижнего меню -->
 		<main class="flex-1 p-4 pb-20 md:pb-4">
@@ -7,7 +7,7 @@
 		</main>
 
 		<!-- Нижнее мобильное меню -->
-		<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 md:hidden z-10">
+		<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 md:hidden z-10">
 			<div class="flex items-center justify-around h-16">
 				<NuxtLink
 					v-for="item in menuItems"
