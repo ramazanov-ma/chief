@@ -40,28 +40,28 @@
 						<div
 							v-for="item in category.items"
 							:key="item.id"
-							class="flex items-center space-x-3 group"
+							@click="toggleItem(item)"
+							class="flex items-center space-x-3 group cursor-pointer py-1 px-2 rounded-lg hover:bg-slate-50 transition-all duration-200"
 						>
-							<button
-								@click="toggleItem(item)"
+							<div
 								class="relative w-6 h-6 rounded-lg transition-all duration-200 flex items-center justify-center"
 								:class="[
-									item.checked
-										? 'bg-blue-500'
-										: 'border-2 border-gray-300 hover:border-blue-400'
-								]"
+              item.checked
+                ? 'bg-blue-500'
+                : 'border-2 border-gray-300 hover:border-blue-400'
+            ]"
 							>
-								<span
-									v-if="item.checked"
-									class="text-white text-sm transform transition-transform duration-200"
-								>✓</span>
-							</button>
+            <span
+				v-if="item.checked"
+				class="text-white text-sm transform transition-transform duration-200"
+			>✓</span>
+							</div>
 							<span
-								class="text-gray-900 transition-all duration-200"
+								class="text-gray-900 transition-all duration-200 flex-grow"
 								:class="item.checked ? 'opacity-50 line-through' : ''"
 							>
-								{{ item.name }}
-							</span>
+            {{ item.name }}
+          </span>
 						</div>
 					</div>
 				</div>
@@ -129,3 +129,10 @@ const toggleItem = (item: ShoppingItem) => {
 	item.checked = !item.checked;
 };
 </script>
+
+<style scoped>
+.cursor-pointer {
+	user-select: none;
+	-webkit-user-select: none;
+}
+</style>
