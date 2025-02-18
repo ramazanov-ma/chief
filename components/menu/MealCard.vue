@@ -11,12 +11,12 @@
 					<div class="flex items-start space-x-3">
 						<div class="flex flex-col items-center w-14">
 							<span
-								class="text-base font-medium text-gray-900 bg-white px-2 rounded-full border border-slate-200"
+								class="w-[64px] text-base font-medium text-gray-900 bg-white px-2 rounded-full border border-slate-200"
 							>
 								{{ meal.time }}
 							</span>
 							<div
-								class="w-10 h-10 rounded-lg bg-white border border-slate-200 shadow-sm flex items-center justify-center mt-1 z-10">
+								class="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center mt-1 z-10">
 								<span class="text-xl">{{ meal.emoji }}</span>
 							</div>
 						</div>

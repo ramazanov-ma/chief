@@ -1,7 +1,7 @@
 ﻿<template>
 	<div class="flex items-start text-gray-600 group">
 		<div
-			class="mr-3 p-2 rounded-lg transition-colors duration-300"
+			class="mr-3 p-2.5 rounded-lg transition-colors duration-300"
 			:class="[`bg-${color}-50`, `group-hover:bg-${color}-100`]"
 		>
 			<font-awesome-icon

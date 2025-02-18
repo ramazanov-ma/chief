@@ -34,13 +34,13 @@
 			</div>
 		</div>
 
-		<BaseButton
-			variant="secondary"
-			class="text-md !bg-blue-50 !text-blue-600 hover:!bg-blue-100"
-			@click="handleAddMenu"
-		>
-			Пересоздать меню
-		</BaseButton>
+<!--		<BaseButton-->
+<!--			variant="secondary"-->
+<!--			class="text-md !bg-blue-50 !text-blue-600 hover:!bg-blue-100"-->
+<!--			@click="handleAddMenu"-->
+<!--		>-->
+<!--			Пересоздать меню-->
+<!--		</BaseButton>-->
 	</div>
 </template>
 

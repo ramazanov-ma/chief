@@ -1,6 +1,6 @@
 ﻿<template>
 	<div>
-		<div class="sm:flex sm:items-center sm:justify-between border border-slate-200 bg-white rounded-3xl shadow-sm">
+		<div class="border border-slate-200 bg-white rounded-3xl shadow-sm">
 			<WeekSelector :label="selectedWeekLabel"/>
 			<WeeklyMenuHeader
 				:period="currentPeriod"
