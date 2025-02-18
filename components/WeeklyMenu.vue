@@ -1,14 +1,5 @@
 ﻿<template>
 	<div>
-		<div class="border border-slate-200 bg-white rounded-3xl shadow-sm">
-			<WeekSelector :label="selectedWeekLabel"/>
-			<WeeklyMenuHeader
-				:period="currentPeriod"
-				@week-change="changeWeek"
-				@add-menu="addMenu"
-			/>
-		</div>
-
 		<div v-for="day in weekDays" :key="day.name"
 		     class="relative py-6 px-4 mt-4 bg-white border rounded-3xl shadow-sm"
 		     :class="{ 'border-blue-500': day.isToday, 'border-slate-200': !day.isToday }">

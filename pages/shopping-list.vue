@@ -1,57 +1,68 @@
-﻿<!-- pages/shopping-list.vue -->
-<template>
-	<div class="p-4">
-		<!-- Заголовок -->
-		<div class="mb-6">
-			<h1 class="text-2xl font-bold text-gray-900 mb-2">Список покупок</h1>
-			<p class="text-gray-600">{{ totalItems }} продуктов</p>
-		</div>
+﻿<template>
+	<div>
+		<AppHeader/>
+		<WeeklySelector
+			title="Продукты недели"
+			@week-change="handleWeekChange"
+		/>
 
-		<!-- Прогресс -->
-		<div class="mb-6">
-			<div class="h-2 bg-gray-100 rounded-full overflow-hidden">
-				<div
-					class="h-full bg-purple-600 transition-all duration-300 rounded-full"
-					:style="{ width: `${progress}%` }"
-				></div>
+		<!-- Список продуктов -->
+		<div class="relative py-6 px-4 mt-4 bg-white border rounded-3xl shadow-sm border-slate-200">
+			<div class="mb-4 flex items-center justify-between">
+				<div class="flex items-center space-x-2">
+					<span class="text-lg font-medium">Прогресс покупок</span>
+					<span class="text-sm text-slate-500">{{ totalItems }} продуктов</span>
+				</div>
+				<span class="text-lg font-medium text-blue-600">{{ Math.round(progress) }}%</span>
 			</div>
-		</div>
 
-		<!-- Категории продуктов -->
-		<div class="space-y-6">
-			<div
-				v-for="category in categories"
-				:key="category.id"
-				class="bg-white rounded-xl p-4 shadow-sm border border-gray-100"
-			>
-				<h3 class="text-gray-900 font-medium mb-4 flex items-center">
-					<span class="text-xl mr-2">{{ category.emoji }}</span>
-					{{ category.name }}
-				</h3>
-
-				<div class="space-y-2">
+			<div class="mb-6">
+				<div class="h-2 bg-gray-100 rounded-full overflow-hidden">
 					<div
-						v-for="item in category.items"
-						:key="item.id"
-						class="flex items-center space-x-3"
-					>
-						<button
-							@click="toggleItem(item)"
-							:class="[
-                'w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-colors',
-                item.checked
-                  ? 'bg-purple-600 border-purple-600'
-                  : 'border-gray-300 hover:border-purple-600'
-              ]"
+						class="h-full bg-blue-500 transition-all duration-300 rounded-full"
+						:style="{ width: `${progress}%` }"
+					></div>
+				</div>
+			</div>
+
+			<div class="space-y-6">
+				<div
+					v-for="category in categories"
+					:key="category.id"
+					class="space-y-4"
+				>
+					<h3 class="flex items-center text-lg font-medium text-gray-900">
+						<span class="text-2xl mr-3">{{ category.emoji }}</span>
+						{{ category.name }}
+					</h3>
+
+					<div class="space-y-3">
+						<div
+							v-for="item in category.items"
+							:key="item.id"
+							class="flex items-center space-x-3 group"
 						>
-							<span v-if="item.checked" class="text-white text-sm">✓</span>
-						</button>
-						<span
-							class="text-gray-900 transition-all"
-							:class="item.checked ? 'opacity-50 line-through' : ''"
-						>
-              {{ item.name }}
-            </span>
+							<button
+								@click="toggleItem(item)"
+								class="relative w-6 h-6 rounded-lg transition-all duration-200 flex items-center justify-center"
+								:class="[
+									item.checked
+										? 'bg-blue-500'
+										: 'border-2 border-gray-300 hover:border-blue-400'
+								]"
+							>
+								<span
+									v-if="item.checked"
+									class="text-white text-sm transform transition-transform duration-200"
+								>✓</span>
+							</button>
+							<span
+								class="text-gray-900 transition-all duration-200"
+								:class="item.checked ? 'opacity-50 line-through' : ''"
+							>
+								{{ item.name }}
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -60,19 +71,23 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue';
+import WeeklySelector from '@/components/weekly/WeeklySelector.vue';
+
 interface ShoppingItem {
-	id: number
-	name: string
-	checked: boolean
+	id: number;
+	name: string;
+	checked: boolean;
 }
 
 interface Category {
-	id: number
-	name: string
-	emoji: string
-	items: ShoppingItem[]
+	id: number;
+	name: string;
+	emoji: string;
+	items: ShoppingItem[];
 }
 
+const currentWeekOffset = ref(0);
 const categories = ref<Category[]>([
 	{
 		id: 1,
@@ -92,22 +107,25 @@ const categories = ref<Category[]>([
 			{ id: 4, name: 'Куриная грудка', checked: false },
 			{ id: 5, name: 'Лосось', checked: false }
 		]
-	},
-	// Добавьте другие категории
-])
+	}
+]);
 
 const totalItems = computed(() => {
-	return categories.value.reduce((acc, cat) => acc + cat.items.length, 0)
-})
+	return categories.value.reduce((acc, cat) => acc + cat.items.length, 0);
+});
 
 const progress = computed(() => {
 	const checked = categories.value.reduce((acc, cat) =>
 		acc + cat.items.filter(item => item.checked).length, 0
-	)
-	return (checked / totalItems.value) * 100
-})
+	);
+	return (checked / totalItems.value) * 100;
+});
+
+const handleWeekChange = (offset: number) => {
+	currentWeekOffset.value = offset;
+};
 
 const toggleItem = (item: ShoppingItem) => {
-	item.checked = !item.checked
-}
+	item.checked = !item.checked;
+};
 </script>
