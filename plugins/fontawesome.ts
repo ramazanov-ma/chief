@@ -33,6 +33,7 @@ import {
 	faHome,
 	faCalendarDays,
 	faBook,
+	faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -67,6 +68,7 @@ library.add(
 	faHome,
 	faCalendarDays,
 	faBook,
+	faChevronDown
 );
 
 export default defineNuxtPlugin((app) => {

@@ -1,40 +1,121 @@
-﻿<!-- pages/preferences.vue -->
-<template>
-	<div class="p-4">
-		<div class="mb-6">
-			<h1 class="text-2xl font-bold text-gray-900 mb-2">Настройки</h1>
-			<p class="text-gray-600">Настройте приложение под себя</p>
-		</div>
+﻿<template>
+	<div>
+		<AppHeader/>
 
 		<div class="space-y-4">
-			<div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-				<h3 class="text-gray-900 font-medium mb-4">Предпочтения в еде</h3>
-				<!-- Здесь содержимое настроек -->
+
+			<!-- Персональные данные -->
+			<div class="bg-white rounded-3xl shadow-sm border border-slate-200 py-6 px-4">
+				<h2 class="text-lg font-medium mb-6">Персональные данные</h2>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div class="flex flex-col space-y-2">
+						<BaseInput
+							v-model="preferences.name"
+							type="text"
+							placeholder="Ваше имя"
+							id="name"
+							label="Имя"
+						/>
+					</div>
+
+					<div class="flex flex-col space-y-2">
+						<BaseInput
+							v-model="preferences.age"
+							type="number"
+							placeholder="30"
+							id="age"
+							label="Возраст"
+						/>
+					</div>
+				</div>
 			</div>
 
-			<div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-				<h3 class="text-gray-900 font-medium mb-4">Настройки меню</h3>
-				<!-- Настройки для генерации меню -->
+			<!-- Уведомления -->
+			<div class="bg-white rounded-3xl shadow-sm border border-slate-200 py-6 px-4">
+				<div class="flex items-center justify-between">
+					<h2 class="text-xl font-medium">Уведомления</h2>
+					<!-- Переключатель уведомлений -->
+					<div class="relative w-12 h-6">
+						<input
+							type="checkbox"
+							v-model="preferences.notificationsEnabled"
+							class="sr-only"
+						/>
+						<div
+							@click="toggleNotifications"
+							class="cursor-pointer absolute inset-0 rounded-full transition-colors duration-200"
+							:class="preferences.notificationsEnabled ? 'bg-blue-500' : 'bg-slate-200'"
+						>
+							<div
+								class="absolute inset-y-1 start-1 w-4 h-4 rounded-full bg-white transition-all duration-200"
+								:class="preferences.notificationsEnabled ? 'translate-x-6' : 'translate-x-0'"
+							></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="space-y-4 mt-6" v-if="preferences.notificationsEnabled">
+					<div class="flex flex-col space-y-2">
+						<label class="text-sm text-gray-700 font-medium">Время напоминания о составлении списка
+							покупок</label>
+						<BaseSelect v-model="preferences.shoppingReminderDay">
+							<option value="monday">Понедельник</option>
+							<option value="tuesday">Вторник</option>
+							<option value="wednesday">Среда</option>
+							<option value="thursday">Четверг</option>
+							<option value="friday">Пятница</option>
+							<option value="saturday">Суббота</option>
+							<option value="sunday">Воскресенье</option>
+						</BaseSelect>
+					</div>
+				</div>
 			</div>
 
-			<button
-				@click="resetOnboarding"
-				class="w-full bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-left text-gray-900 hover:bg-gray-50 transition-colors"
+			<!-- Кнопка анкеты -->
+			<BaseButton
+				@click="goToQuestionnaire"
+				class-list="w-full"
 			>
-				Пройти онбординг заново
-			</button>
+				<font-awesome-icon icon="clipboard-list" class="text-sm"/>
+				Пройти анкету еще раз
+			</BaseButton>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { useOnboardingStore } from '~/stores/onboarding'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { useOnboardingStore } from "@/stores/onboarding";
+import BaseInput from '@/components/ui/BaseInput.vue';
+import BaseButton from '@/components/ui/BaseButton.vue';
+import BaseSelect from '@/components/ui/BaseSelect.vue';
 
-const router = useRouter()
-const onboardingStore = useOnboardingStore()
+const router = useRouter();
+const onboardingStore = useOnboardingStore();
 
-const resetOnboarding = () => {
-	onboardingStore.resetOnboarding()
-	router.push('/onboarding')
+interface Preferences {
+	name: string;
+	age: number;
+	notificationsEnabled: boolean;
+	shoppingReminderDay: string;
 }
+
+const preferences = ref<Preferences>({
+	name: 'Марат',
+	age: 30,
+	notificationsEnabled: true,
+	shoppingReminderDay: 'sunday'
+});
+
+const toggleNotifications = () => {
+	preferences.value.notificationsEnabled = !preferences.value.notificationsEnabled;
+};
+
+const goToQuestionnaire = () => {
+	onboardingStore.resetOnboarding();
+	router.push('/onboarding');
+};
 </script>
