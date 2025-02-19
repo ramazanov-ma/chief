@@ -2,12 +2,12 @@
 	<div class="min-h-screen bg-slate-100">
 
 		<!-- Добавляем отступ снизу на мобильных для нижнего меню -->
-		<main class="flex-1 p-4 pb-20 md:pb-4">
+		<main class="flex-1 p-4 pb-16">
 			<slot/>
 		</main>
 
 		<!-- Нижнее мобильное меню -->
-		<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 md:hidden z-10">
+		<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-10">
 			<div class="flex items-center justify-around h-16">
 				<NuxtLink
 					v-for="item in menuItems"
@@ -19,7 +19,7 @@
 						:icon="item.icon"
 						class="h-5 w-5"
 					/>
-					<span class="mt-1 text-xs font-medium">
+					<span class="mt-1 text-xs font-medium text-center">
 						{{ item.name }}
 					</span>
 				</NuxtLink>
@@ -45,9 +45,9 @@ const menuItems = [
 		icon: 'utensils'
 	},
 	{
-		name: 'Список покупок',
+		name: 'Продукты',
 		path: '/shopping-list',
-		icon: 'book'
+		icon: 'apple-alt'
 	},
 	{
 		name: 'Профиль',

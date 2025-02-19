@@ -66,26 +66,13 @@
 </template>
 
 <script setup lang="ts">
-interface Meal {
-	id: number;
-	time: string;
-	name: string;
-	description: string;
-	emoji: string;
-	calories: number;
-	cookingTime: number;
-}
-
-interface Day {
-	date: string;
-	meals: Meal[];
-}
+import { Day } from "@/types/menu";
 
 interface Props {
 	day: Day;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 
 const replaceMeal = (date: string, mealId: number) => {
 	// Здесь логика замены блюда

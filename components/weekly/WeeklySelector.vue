@@ -18,20 +18,32 @@
 						<div class="flex items-center justify-between sm:justify-end space-x-2">
 							<div class="flex items-center space-x-2">
 								<BaseButton
+									v-if="weekOffset !== 0"
 									variant="secondary"
-									class="!px-4 !py-2"
+									class="w-[42px] h-[40px] !p-0"
+									@click="resetToCurrentWeek"
+									title="Вернуться к текущей неделе"
+								>
+									<font-awesome-icon icon="rotate-left"/>
+								</BaseButton>
+								<BaseButton
+									variant="secondary"
+									class="w-[42px] h-[40px] !p-0"
 									@click="changeWeek(-1)"
+									:disabled="isPastLimit"
 								>
 									<font-awesome-icon icon="chevron-left"/>
 								</BaseButton>
 								<BaseButton
 									variant="secondary"
-									class="!px-4 !py-2"
+									class="w-[42px] h-[40px] !p-0"
 									@click="changeWeek(1)"
+									:disabled="isFutureLimit"
 								>
 									<font-awesome-icon icon="chevron-right"/>
 								</BaseButton>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -45,13 +57,18 @@ import { ref, computed } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import BaseButton from '@/components/ui/BaseButton.vue';
 import WeekSelector from '@/components/ui/WeekSelector.vue';
+import { useWeekDates } from '@/composables/useWeekDates';
 
 interface Props {
 	title: string;
+	maxPastWeeks?: number;  // Максимальное количество прошедших недель для просмотра
+	maxFutureWeeks?: number; // Максимальное количество будущих недель для просмотра
 }
 
 const props = withDefaults(defineProps<Props>(), {
-	title: 'Меню недели'
+	title: 'Меню недели',
+	maxPastWeeks: 4,    // По умолчанию можно просматривать до 4 недель назад
+	maxFutureWeeks: 4   // По умолчанию можно планировать на 4 недели вперед
 });
 
 const emit = defineEmits<{
@@ -59,23 +76,26 @@ const emit = defineEmits<{
 }>();
 
 const weekOffset = ref(0);
+const { getWeekStartDate, isDateInPast } = useWeekDates();
 
-const weekStatusColor = computed(() => {
-	if (weekOffset.value < 0) {
-		return 'text-red-500';
-	} else if (weekOffset.value > 0) {
-		return 'text-green-500';
-	}
-	return 'text-blue-500';
+// Проверка ограничений на просмотр прошлых недель
+const isPastLimit = computed(() => {
+	return weekOffset.value <= -props.maxPastWeeks;
 });
 
-const weekStatusBadge = computed(() => {
-	if (weekOffset.value < 0) {
-		return '!bg-red-50 !text-red-600 hover:!bg-red-100';
-	} else if (weekOffset.value > 0) {
-		return '!bg-green-50 !text-green-600 hover:!bg-green-100';
+// Проверка ограничений на просмотр будущих недель
+const isFutureLimit = computed(() => {
+	return weekOffset.value >= props.maxFutureWeeks;
+});
+
+const weekStatusColor = computed(() => {
+	if (weekOffset.value === 0) {
+		return 'text-blue-500'; // Текущая неделя
+	} else if (isDateInPast(getWeekStartDate(weekOffset.value))) {
+		return 'text-red-500'; // Прошедшие недели
+	} else {
+		return 'text-green-500'; // Будущие недели
 	}
-	return '!bg-blue-50 !text-blue-600 hover:!bg-blue-100';
 });
 
 const selectedWeekLabel = computed(() => {
@@ -87,22 +107,12 @@ const selectedWeekLabel = computed(() => {
 });
 
 const currentPeriod = computed(() => {
-	const start = getWeekStart(weekOffset.value);
+	const start = getWeekStartDate(weekOffset.value);
 	const end = new Date(start);
 	end.setDate(end.getDate() + 6);
 
 	return `${formatDate(start)} — ${formatDate(end)}`;
 });
-
-function getWeekStart(offset: number): Date {
-	const today = new Date();
-	const dayOfWeek = today.getDay() || 7;
-	const diff = today.getDate() - dayOfWeek + 1 + (offset * 7);
-
-	const weekStart = new Date(today);
-	weekStart.setDate(diff);
-	return weekStart;
-}
 
 const formatDate = (date: Date): string => {
 	return date.toLocaleString('ru', {
@@ -118,7 +128,18 @@ function getNumeralForm(number: number): string {
 }
 
 const changeWeek = (direction: number) => {
-	weekOffset.value += direction;
+	const newOffset = weekOffset.value + direction;
+
+	// Проверяем ограничения
+	if (direction < 0 && newOffset < -props.maxPastWeeks) return;
+	if (direction > 0 && newOffset > props.maxFutureWeeks) return;
+
+	weekOffset.value = newOffset;
 	emit('week-change', weekOffset.value);
+};
+
+const resetToCurrentWeek = () => {
+	weekOffset.value = 0;
+	emit('week-change', 0);
 };
 </script>

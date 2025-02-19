@@ -32,8 +32,9 @@ import {
 	faCalendarCheck,
 	faHome,
 	faCalendarDays,
-	faBook,
 	faChevronDown,
+	faRotateLeft,
+	faAppleAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -67,8 +68,9 @@ library.add(
 	faCalendarCheck,
 	faHome,
 	faCalendarDays,
-	faBook,
-	faChevronDown
+	faChevronDown,
+	faRotateLeft,
+	faAppleAlt
 );
 
 export default defineNuxtPlugin((app) => {
