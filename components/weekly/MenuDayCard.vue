@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="relative py-4 px-4 bg-white border rounded-3xl shadow-sm transition-colors"
+		class="relative py-4 px-4 bg-white border rounded-2xl shadow-sm transition-colors"
 		:class="[day.isToday ? 'border-blue-400' : 'border-slate-200']"
 	>
 		<div class="transition-colors">

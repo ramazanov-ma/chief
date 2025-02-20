@@ -5,7 +5,7 @@
 		<div class="space-y-4">
 
 			<!-- Персональные данные -->
-			<div class="bg-white rounded-3xl shadow-sm border border-slate-200 py-6 px-4">
+			<div class="bg-white rounded-2xl shadow-sm border border-slate-200 py-6 px-4">
 				<h2 class="text-lg font-medium mb-6">Персональные данные</h2>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -32,7 +32,7 @@
 			</div>
 
 			<!-- Уведомления -->
-			<div class="bg-white rounded-3xl shadow-sm border border-slate-200 py-6 px-4">
+			<div class="bg-white rounded-2xl shadow-sm border border-slate-200 py-6 px-4">
 				<div class="flex items-center justify-between">
 					<h2 class="text-xl font-medium">Уведомления</h2>
 					<!-- Переключатель уведомлений -->
@@ -76,6 +76,7 @@
 			<BaseButton
 				@click="goToQuestionnaire"
 				class-list="w-full"
+				variant="outline"
 			>
 				<font-awesome-icon icon="clipboard-list" class="text-sm"/>
 				Пройти анкету еще раз

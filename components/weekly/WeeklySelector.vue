@@ -1,5 +1,5 @@
 <template>
-	<div class="border border-slate-200 bg-white rounded-3xl shadow-sm">
+	<div class="border border-slate-200 bg-white rounded-2xl shadow-sm">
 		<WeekSelector :label="selectedWeekLabel"/>
 		<div class="flex flex-col space-y-4 p-4">
 			<div class="flex items-center justify-between sm:justify-start sm:space-x-3">

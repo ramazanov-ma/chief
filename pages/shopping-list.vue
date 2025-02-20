@@ -7,7 +7,7 @@
 		/>
 
 		<!-- Список продуктов -->
-		<div class="relative py-6 px-4 mt-4 bg-white border rounded-3xl shadow-sm border-slate-200">
+		<div class="relative py-6 px-4 mt-4 bg-white border rounded-2xl shadow-sm border-slate-200">
 			<div class="mb-4 flex items-center justify-between">
 				<div class="flex items-center space-x-2">
 					<span class="text-lg font-medium">Прогресс покупок</span>
