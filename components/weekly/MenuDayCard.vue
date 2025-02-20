@@ -9,7 +9,7 @@
 					<div class="flex items-center justify-between">
 						<DayHeader :day="day"/>
 						<BaseButton
-							v-if="isEditable && state !== DayState.PAST"
+							v-if="state === DayState.FUTURE"
 							@click="$emit('regenerate')"
 							class="w-10 h-10 !p-0 border-slate-100 text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
 							title="Пересоздать день"
@@ -19,10 +19,19 @@
 						</BaseButton>
 					</div>
 
+<!--					<MealsList-->
+<!--						:day="{-->
+<!--							date,-->
+<!--							state,-->
+<!--							meals-->
+<!--						}"-->
+<!--						@replace-meal="({ date, mealId }) => $emit('replace-meal', { date, mealId })"-->
+<!--					/>-->
+
 					<MealCard :day="{
 						date,
+						state,
 						meals,
-						isToday: day.isToday
 					}"/>
 				</div>
 			</div>
@@ -37,12 +46,12 @@ import BaseButton from '@/components/ui/BaseButton.vue';
 import MealCard from '@/components/menu/MealCard.vue';
 import DayHeader from '@/components/menu/DayHeader.vue';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import MealsList from "@/components/weekly/MealsList.vue";
 
 interface Props {
 	date: string;
-	meals: Array<Meal>;
+	meals: Meal[];
 	state: DayState;
-	isEditable: boolean;
 }
 
 const props = defineProps<Props>();
@@ -65,7 +74,6 @@ const day = computed(() => {
 		isToday: props.state === DayState.CURRENT,
 		meals: props.meals,
 		state: props.state,
-		isEditable: props.isEditable
 	};
 });
 </script>

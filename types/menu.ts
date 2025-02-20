@@ -24,5 +24,4 @@ export interface DayMenu {
 	date: string;
 	meals: Meal[];
 	state: DayState;
-	isEditable: boolean;
 }

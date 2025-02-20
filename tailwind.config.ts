@@ -34,6 +34,7 @@
 		'bg-blue-50',
 		'bg-pink-50',
 		'bg-purple-50',
+		'bg-slate-100',
 		'group-hover:bg-blue-100',
 		'group-hover:bg-pink-100',
 		'group-hover:bg-purple-100',

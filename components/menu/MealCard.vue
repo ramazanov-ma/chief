@@ -25,29 +25,20 @@
 							<div
 								class="bg-white border border-slate-200 rounded-xl p-4 group-hover:bg-gray-50 transition-colors shadow-sm"
 							>
-								<div
-									class="flex items-start justify-between space-x-2"
-								>
-									<h3
-										class="text-base font-medium text-gray-900 truncate"
-									>
-										{{ meal.name }}
-									</h3>
+								<div class="flex items-start justify-between space-x-2">
+									<MealTitle :title="meal.name"/>
 								</div>
 
-								<p class="text-sm text-gray-600 mt-1 mb-3">
-									{{ meal.description }}
-								</p>
+								<MealDescription :description="meal.description"/>
 
 								<div class="flex items-center flex-wrap gap-4">
-									<span class="text-sm font-medium text-gray-700">
-										🔥 {{ meal.calories }} ккал
-									</span>
-									<span class="text-sm font-medium text-gray-700">
-										⏱️ {{ meal.cookingTime }} мин
-									</span>
+									<CaloriesBadge :calories="meal.calories"/>
+									<CookingTimeBadge :time="meal.cookingTime"/>
 
-									<div class="flex items-center gap-4 ml-auto">
+									<div
+										v-if="props.day.state === DayState.FUTURE"
+										class="flex items-center gap-4 ml-auto"
+									>
 										<button
 											class="text-sm font-medium text-blue-600 hover:text-blue-900 rounded-lg transition-colors"
 											@click="replaceMeal(day.date, meal.id)"
@@ -66,13 +57,17 @@
 </template>
 
 <script setup lang="ts">
-import { Day } from "@/types/menu";
+import { DayMenu, DayState } from "@/types/menu";
+import CaloriesBadge from "@/components/ui/CaloriesBadge.vue";
+import CookingTimeBadge from "@/components/ui/CookingTimeBadge.vue";
+import MealTitle from "@/components/ui/MealTitle.vue";
+import MealDescription from "@/components/ui/MealDescription.vue";
 
 interface Props {
-	day: Day;
+	day: DayMenu;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const replaceMeal = (date: string, mealId: number) => {
 	// Здесь логика замены блюда

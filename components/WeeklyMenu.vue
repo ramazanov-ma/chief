@@ -98,7 +98,6 @@ const weekDays = computed(() => {
 			// meals: menuStore.getMealsForDay(currentDay) || [], // Получаем блюда из store
 			meals: [...exampleMeals],
 			state,
-			isEditable: !isDateInPast(currentDay) // Редактировать можно только текущий и будущие дни
 		});
 	}
 
