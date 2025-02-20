@@ -7,32 +7,19 @@
 			<div class="flex items-start space-x-4">
 				<div class="flex-1 min-w-0">
 					<div class="flex items-center justify-between">
-						<DayHeader :day="day"/>
-						<BaseButton
-							v-if="state === DayState.FUTURE"
-							@click="$emit('regenerate')"
-							class="w-10 h-10 !p-0 border-slate-100 text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
-							title="Пересоздать день"
-							variant="secondary"
-						>
-							<font-awesome-icon icon="rotate"/>
-						</BaseButton>
+						<DayHeader
+							:day="day"
+							:is-collapsed="isCollapsed"
+							@toggle-collapse="toggleCollapse"
+							@regenerate="regenerate"
+						/>
 					</div>
 
-<!--					<MealsList-->
-<!--						:day="{-->
-<!--							date,-->
-<!--							state,-->
-<!--							meals-->
-<!--						}"-->
-<!--						@replace-meal="({ date, mealId }) => $emit('replace-meal', { date, mealId })"-->
-<!--					/>-->
-
-					<MealCard :day="{
-						date,
-						state,
-						meals,
-					}"/>
+					<MealCard
+						:day="day"
+						:is-collapsed="isCollapsed"
+						@replace-meal="(meal) => $emit('replace-meal', meal)"
+					/>
 				</div>
 			</div>
 		</div>
@@ -40,13 +27,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { computed } from 'vue';
 import { DayState, Meal } from '@/types/menu';
-import BaseButton from '@/components/ui/BaseButton.vue';
 import MealCard from '@/components/menu/MealCard.vue';
 import DayHeader from '@/components/menu/DayHeader.vue';
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import MealsList from "@/components/weekly/MealsList.vue";
 
 interface Props {
 	date: string;
@@ -55,27 +40,32 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const isCollapsed = ref(true);
+
+const toggleCollapse = () => {
+	isCollapsed.value = !isCollapsed.value;
+};
 
 defineEmits<{
-	(e: 'replace-meal', meal: { id: string; name: string }): void;
+	(e: 'replace-meal', meal: { date: string; mealId: string }): void;
 	(e: 'regenerate'): void;
 }>();
 
-// Создаем вычисляемое свойство day для передачи в DayHeader
-const day = computed(() => {
-	const date = new Date(props.date);
-	return {
-		date: props.date,
-		name: date.toLocaleDateString('ru-RU', { weekday: 'long' }).capitalize(),
-		formattedDate: date.toLocaleDateString('ru-RU', {
-			day: 'numeric',
-			month: 'long'
-		}),
-		isToday: props.state === DayState.CURRENT,
-		meals: props.meals,
-		state: props.state,
-	};
-});
+const day = computed(() => ({
+	date: props.date,
+	name: new Date(props.date).toLocaleDateString('ru-RU', { weekday: 'long' }).capitalize(),
+	formattedDate: new Date(props.date).toLocaleDateString('ru-RU', {
+		day: 'numeric',
+		month: 'long'
+	}),
+	isToday: props.state === DayState.CURRENT,
+	meals: props.meals,
+	state: props.state,
+}));
+
+const regenerate = () => {
+	$emit('regenerate');
+};
 </script>
 
 <script lang="ts">
