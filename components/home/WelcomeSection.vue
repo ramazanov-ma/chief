@@ -2,9 +2,9 @@
     <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200">
         <div class="flex justify-between items-start mb-4">
             <div>
-                <h2 class="text-xl font-semibold mb-1">
-                    {{ family.length === 1 ? 'Ваше меню' : 'Семейное меню' }}
-                    {{ family.length === 1 ? '🍽️' : '👨‍👩‍👧‍👦' }}
+                <h2 class="text-xl font-semibold flex items-center gap-2 mb-1">
+                    <span>{{ family.length === 1 ? '🍽️' : '👨‍👩‍👧‍👦' }}</span>
+                    <span>{{ family.length === 1 ? 'Ваше меню' : 'Семейное меню' }}</span>
                 </h2>
                 <p class="text-sm text-slate-500">
                     {{ currentMenu.daysPlanned }} из {{ currentMenu.totalDays }} дней спланировано
@@ -15,22 +15,21 @@
         <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mb-3">
             <div
                 class="h-full bg-blue-500 transition-all duration-300"
-                :style="{
-          width: `${currentMenu.weekProgress}%`
-        }"
-            ></div>
+                :style="{ width: `${currentMenu.weekProgress}%`}">
+            </div>
         </div>
 
         <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
-      <span class="text-sm text-slate-500">
-        Следующее планирование: {{ formatDate(currentMenu.nextPlanningDate) }}
-      </span>
+            <span class="text-sm text-slate-500">
+                Следующее планирование: {{ formatDate(currentMenu.nextPlanningDate) }}
+            </span>
             <BaseButton
                 variant="secondary"
+                size="lg"
                 class="sm:w-auto w-full justify-center"
                 @click="startPlanning"
             >
-                <font-awesome-icon icon="calendar-plus" class="text-slate-700 mr-2" />
+                <font-awesome-icon icon="calendar-plus" class="text-slate-700 mr-2"/>
                 Спланировать меню
             </BaseButton>
         </div>

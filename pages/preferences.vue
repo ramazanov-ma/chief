@@ -74,11 +74,11 @@
 
 			<!-- Кнопка анкеты -->
 			<BaseButton
-				@click="goToQuestionnaire"
-				class-list="w-full"
-				variant="outline"
+				variant="secondary"
+				size="lg"
+				class="sm:w-auto w-full justify-center border text-slate-600 border-slate-400"
 			>
-				<font-awesome-icon icon="clipboard-list" class="text-sm"/>
+				<font-awesome-icon icon="clipboard-list" class="text-slate-600 mr-2"/>
 				Пройти анкету еще раз
 			</BaseButton>
 		</div>

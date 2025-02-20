@@ -1,5 +1,5 @@
 ﻿<template>
-	<header class="pt-2 pb-6">
+	<header class="pt-2 pb-4">
 		<div class="max-w-2xl">
 			<!-- Приветствие -->
 			<div class="flex items-center space-x-4">
