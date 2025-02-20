@@ -1,18 +1,27 @@
 <template>
 	<div class="flex items-center justify-between w-full">
 		<div class="flex flex-col">
-			<span class="text-xl font-medium capitalize">
+			<span
+				class="text-lg font-medium capitalize"
+			>
 				{{ day.name }}
 			</span>
 			<span
 				class="text-sm"
 				:class="[
 					day.state === DayState.PAST ? 'text-slate-400' : 'text-slate-500',
-					day.isToday ? 'text-blue-500' : ''
+					day.isToday ? '!text-blue-500' : ''
 				]"
 			>
 				{{ day.formattedDate }}
 			</span>
+		</div>
+
+		<div
+			v-if="day.isToday"
+			class="flex items-center text-xs px-4 py-1.5 font-normal rounded-full transition-colors cursor-pointer bg-blue-50 text-blue-600 hover:bg-blue-100"
+		>
+			Сегодня
 		</div>
 
 		<!-- Кнопка для прошедших дней -->

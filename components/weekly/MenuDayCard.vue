@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="relative py-4 px-4 bg-white border rounded-3xl shadow-sm transition-colors"
-		:class="[day.isToday ? 'border-blue-500' : 'border-slate-200']"
+		:class="[day.isToday ? 'border-blue-400' : 'border-slate-200']"
 	>
 		<div class="transition-colors">
 			<div class="flex items-start space-x-4">
@@ -18,7 +18,7 @@
 					<MealCard
 						:day="day"
 						:is-collapsed="isCollapsed"
-						@replace-meal="(meal) => $emit('replace-meal', meal)"
+						@replace-meal="() => $emit('replace-meal')"
 					/>
 				</div>
 			</div>
@@ -46,8 +46,8 @@ const toggleCollapse = () => {
 	isCollapsed.value = !isCollapsed.value;
 };
 
-defineEmits<{
-	(e: 'replace-meal', meal: { date: string; mealId: string }): void;
+const emit = defineEmits<{
+	(e: 'replace-meal'): void;
 	(e: 'regenerate'): void;
 }>();
 
@@ -64,7 +64,7 @@ const day = computed(() => ({
 }));
 
 const regenerate = () => {
-	$emit('regenerate');
+	emit('regenerate');
 };
 </script>
 

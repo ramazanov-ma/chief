@@ -5,7 +5,7 @@
 			class="space-y-4 mt-4"
 		>
 			<div class="relative">
-				<div class="absolute left-[1.65rem] top-0 bottom-0 w-px"></div>
+				<div class="absolute left-[1.65rem] top-0 bottom-0 w-px bg-slate-200"></div>
 				<div class="space-y-4">
 					<div
 						v-for="meal in day.meals"
@@ -46,7 +46,7 @@
 										>
 											<button
 												class="text-sm font-medium text-blue-600 hover:text-blue-900 rounded-lg transition-colors"
-												@click="$emit('replace-meal', { date: day.date, mealId: meal.id })"
+												@click="$emit('replace-meal')"
 											>
 												Заменить
 											</button>
@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { DayMenu, DayState } from "@/types/menu";
+import { DayMenu, DayState, Meal } from "@/types/menu";
 import CaloriesBadge from "@/components/ui/CaloriesBadge.vue";
 import CookingTimeBadge from "@/components/ui/CookingTimeBadge.vue";
 import MealTitle from "@/components/ui/MealTitle.vue";
@@ -77,6 +77,6 @@ interface Props {
 defineProps<Props>();
 
 defineEmits<{
-	(e: 'replace-meal', meal: { date: string; mealId: number }): void;
+	(e: 'replace-meal'): void;
 }>();
 </script>
