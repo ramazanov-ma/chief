@@ -4,6 +4,12 @@ export enum DayState {
 	FUTURE = 'future'
 }
 
+export enum Complexity {
+	EASY = 1,
+	MEDIUM = 2,
+	HARD = 3
+}
+
 export interface Meal {
 	id: number;
 	time: string;
@@ -12,6 +18,7 @@ export interface Meal {
 	emoji: string;
 	calories: number;
 	cookingTime: number;
+	complexity: Complexity;
 }
 
 export interface Day {

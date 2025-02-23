@@ -36,9 +36,13 @@
 
 									<MealDescription :description="meal.description"/>
 
-									<div class="flex items-center flex-wrap gap-4">
+									<div class="flex items-center flex-wrap gap-x-4">
 										<CaloriesBadge :calories="meal.calories"/>
 										<CookingTimeBadge :time="meal.cookingTime"/>
+										<ComplexityIndicator
+											text-class="font-medium text-gray-700"
+											:complexity="meal.complexity"
+										/>
 
 										<div
 											v-if="day.state === DayState.FUTURE"
@@ -68,6 +72,7 @@ import CaloriesBadge from "@/components/ui/CaloriesBadge.vue";
 import CookingTimeBadge from "@/components/ui/CookingTimeBadge.vue";
 import MealTitle from "@/components/ui/MealTitle.vue";
 import MealDescription from "@/components/ui/MealDescription.vue";
+import ComplexityIndicator from "@/components/ui/ComplexityIndicator.vue";
 
 interface Props {
 	day: DayMenu;

@@ -1,71 +1,59 @@
 <template>
 	<div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200">
 		<div class="flex justify-between items-start mb-4">
-			<div>
-				<h2 class="text-xl font-semibold">{{ meal.name }}</h2>
-				<div class="flex items-center gap-2 mt-1">
-					<font-awesome-icon
-						icon="clock"
-						class="text-blue-500 w-4 h-4"
-					/>
-					<p class="text-sm text-slate-500">{{ meal.time }}</p>
-				</div>
+			<div class="flex items-center gap-2">
+				<font-awesome-icon
+					icon="utensils"
+					class="text-orange-500 w-5 h-5"
+				/>
+				<h2 class="text-xl font-semibold">{{ meal.name }} - {{ meal.time }}</h2>
 			</div>
-			<div class="flex flex-col sm:flex-row items-end sm:items-center gap-2 text-sm">
-				<div class="flex items-center gap-1 text-slate-500">
-					<font-awesome-icon
-						icon="utensils"
-						class="text-orange-500 w-4 h-4"
-					/>
-					<span>{{ meal.recipe.cookingTime }} мин</span>
-				</div>
-				<div class="flex items-center gap-1 text-slate-500" v-if="!isSingleUser">
-					<font-awesome-icon
-						icon="users"
-						class="text-purple-500 w-4 h-4"
-					/>
-					<span>{{ meal.recipe.portionCount }} порц.</span>
-				</div>
-			</div>
+<!--			<div-->
+<!--				v-if="!isSingleUser"-->
+<!--				class="flex gap-4 text-sm"-->
+<!--			>-->
+<!--				<div class="flex items-center gap-1 text-slate-500" >-->
+<!--					<font-awesome-icon-->
+<!--						icon="users"-->
+<!--						class="text-purple-500 w-4 h-4"-->
+<!--					/>-->
+<!--					<span>{{ meal.recipe.portionCount }} порц.</span>-->
+<!--				</div>-->
+<!--			</div>-->
 		</div>
 
 		<!-- Информация о порциях (только для семьи) -->
-		<div
-			v-if="!isSingleUser"
-			class="bg-slate-50 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6"
-		>
-			<div class="text-sm font-medium mb-2 sm:mb-3">Порции:</div>
-			<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-				<div
-					v-for="portion in meal.portions"
-					:key="portion.memberName"
-					class="flex justify-between items-center bg-white rounded-lg p-2 sm:p-3"
-				>
-					<span class="text-sm text-slate-600">{{ portion.memberName }}</span>
-					<span class="text-sm font-medium text-slate-800">{{ portion.portion }}x</span>
-				</div>
+<!--		<div-->
+<!--			v-if="!isSingleUser"-->
+<!--			class="bg-slate-50 rounded-xl p-3 mb-4"-->
+<!--		>-->
+<!--			<div class="text-sm font-medium mb-2 sm:mb-3">Порции:</div>-->
+<!--			<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">-->
+<!--				<div-->
+<!--					v-for="portion in meal.portions"-->
+<!--					:key="portion.memberName"-->
+<!--					class="flex justify-between items-center bg-white rounded-lg p-2 sm:p-3"-->
+<!--				>-->
+<!--					<span class="text-sm text-slate-600">{{ portion.memberName }}</span>-->
+<!--					<span class="text-sm font-medium text-slate-800">{{ portion.portion }}x</span>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+
+		<div>
+			<div class="flex items-start justify-between space-x-2">
+				<MealTitle title="Стейк из лосося"/>
 			</div>
+			<MealDescription description="С гарниром из киноа и свежих овощей"/>
 		</div>
 
-		<!-- Сложность рецепта -->
-		<div class="flex items-center gap-2 mb-4 sm:mb-6">
-			<font-awesome-icon
-				icon="chart-simple"
-				class="text-green-500 w-4 h-4"
+		<div class="flex gap-4 mb-4">
+			<CaloriesBadge :calories="325"/>
+			<CookingTimeBadge :time="meal.recipe.cookingTime"/>
+			<ComplexityIndicator
+				text-class="font-medium text-gray-700"
+				:complexity="Complexity.MEDIUM"
 			/>
-			<div class="text-sm text-slate-500">Сложность:</div>
-			<div class="flex gap-1">
-				<div
-					v-for="n in 3"
-					:key="n"
-					class="w-2 h-2 rounded-full"
-					:class="[
-            n <= getComplexityLevel(meal.recipe.complexity)
-              ? 'bg-green-500'
-              : 'bg-slate-200'
-          ]"
-				></div>
-			</div>
 		</div>
 
 		<div class="flex gap-3">
@@ -93,6 +81,12 @@
 import { useRouter } from 'vue-router';
 import BaseButton from '@/components/ui/BaseButton.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import ComplexityIndicator from "@/components/ui/ComplexityIndicator.vue";
+import { Complexity } from "@/types/menu";
+import CookingTimeBadge from "@/components/ui/CookingTimeBadge.vue";
+import CaloriesBadge from "@/components/ui/CaloriesBadge.vue";
+import MealTitle from "@/components/ui/MealTitle.vue";
+import MealDescription from "@/components/ui/MealDescription.vue";
 
 const router = useRouter();
 
