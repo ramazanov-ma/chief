@@ -5,11 +5,11 @@
 				icon="chart-pie"
 				class="text-purple-500 w-5 h-5"
 			/>
-			Аналитика
+			Аналитика за неделю
 		</h2>
 
 		<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-			<!-- Бюджет -->
+			<!-- Недельный бюджет -->
 			<div class="bg-slate-50 rounded-xl p-3 sm:p-4">
 				<div class="flex items-center gap-2 mb-2">
 					<font-awesome-icon
@@ -17,7 +17,7 @@
 						class="text-green-500 w-4 h-4"
 					/>
 					<div class="text-sm text-slate-500">
-						{{ isSingleUser ? 'Бюджет' : 'Семейный бюджет' }}
+						{{ isSingleUser ? 'Недельный бюджет' : 'Семейный недельный бюджет' }}
 					</div>
 				</div>
 				<div class="flex items-end gap-2">
@@ -62,11 +62,10 @@
 						v-for="n in stats.preferences.total"
 						:key="n"
 						class="flex-1 h-1 rounded-full"
-						:class="[
-              n <= stats.preferences.matched
-                ? 'bg-red-500'
-                : 'bg-slate-200'
-            ]"
+						:class="{
+              'bg-red-500': n <= stats.preferences.matched,
+              'bg-slate-200': n > stats.preferences.matched
+            }"
 					></div>
 				</div>
 			</div>
@@ -78,7 +77,7 @@
 						icon="star"
 						class="text-yellow-500 w-4 h-4"
 					/>
-					<div class="text-sm text-slate-500">Разнообразие блюд</div>
+					<div class="text-sm text-slate-500">Разнообразие блюд за неделю</div>
 				</div>
 				<div class="flex items-end gap-2 mb-2">
 					<div class="text-lg sm:text-xl font-medium">
@@ -108,8 +107,8 @@
 				/>
 				<span>
           {{ isSingleUser
-					? 'Рекомендации по улучшению меню ждут вас в разделе планирования'
-					: 'Персональные рекомендации для каждого члена семьи доступны в разделе планирования'
+					? 'Рекомендации по улучшению меню за неделю ждут вас в разделе планирования'
+					: 'Персональные рекомендации для каждого члена семьи за неделю доступны в разделе планирования'
 					}}
         </span>
 			</div>

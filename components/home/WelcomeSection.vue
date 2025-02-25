@@ -25,7 +25,6 @@
             </span>
             <BaseButton
                 variant="secondary"
-                size="lg"
                 class="sm:w-auto w-full justify-center"
                 @click="startPlanning"
             >
