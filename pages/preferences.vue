@@ -5,10 +5,10 @@
 		<div class="space-y-4">
 
 			<!-- Персональные данные -->
-			<div class="bg-white rounded-2xl shadow-sm border border-slate-200 py-6 px-4">
-				<h2 class="text-lg font-medium mb-6">Персональные данные</h2>
+			<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+				<h2 class="text-xl font-medium">Персональные данные</h2>
 
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
 					<div class="flex flex-col space-y-2">
 						<BaseInput
 							v-model="preferences.name"
@@ -32,7 +32,7 @@
 			</div>
 
 			<!-- Уведомления -->
-			<div class="bg-white rounded-2xl shadow-sm border border-slate-200 py-6 px-4">
+			<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
 				<div class="flex items-center justify-between">
 					<h2 class="text-xl font-medium">Уведомления</h2>
 					<!-- Переключатель уведомлений -->
@@ -57,7 +57,7 @@
 
 				<div class="space-y-4 mt-6" v-if="preferences.notificationsEnabled">
 					<div class="flex flex-col space-y-2">
-						<label class="text-sm text-gray-700 font-medium">Время напоминания о составлении списка
+						<label class="text-sm text-gray-700 font-medium">День напоминания о составлении списка
 							покупок</label>
 						<BaseSelect v-model="preferences.shoppingReminderDay">
 							<option value="monday">Понедельник</option>
@@ -72,11 +72,25 @@
 				</div>
 			</div>
 
+			<!-- Настройки темы -->
+			<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+				<h2 class="text-xl font-medium">Настройки темы</h2>
+
+				<div class="flex flex-col space-y-2 mt-6">
+					<label class="text-sm text-gray-700 font-medium">Выберите тему:</label>
+					<BaseSelect v-model="preferences.theme">
+						<option value="light">Светлая</option>
+						<option value="dark">Тёмная</option>
+					</BaseSelect>
+				</div>
+			</div>
+
 			<!-- Кнопка анкеты -->
 			<BaseButton
-				variant="secondary"
+				variant="outline"
 				size="lg"
-				class="sm:w-auto w-full justify-center border text-slate-600 border-slate-400"
+				class="sm:w-auto w-full justify-center border text-slate-600 border-slate-400 transition-shadow"
+				@click="goToQuestionnaire"
 			>
 				<font-awesome-icon icon="clipboard-list" class="text-slate-600 mr-2"/>
 				Пройти анкету еще раз
@@ -102,17 +116,37 @@ interface Preferences {
 	age: number;
 	notificationsEnabled: boolean;
 	shoppingReminderDay: string;
+	theme: string;
 }
 
 const preferences = ref<Preferences>({
 	name: 'Марат',
 	age: 30,
 	notificationsEnabled: true,
-	shoppingReminderDay: 'sunday'
+	shoppingReminderDay: 'sunday',
+	theme: 'light'
 });
+
+const avatarUrl = ref('https://upload.wikimedia.org/wikipedia/tr/7/77/Aang_karakteri.png'); // URL аватара пользователя
 
 const toggleNotifications = () => {
 	preferences.value.notificationsEnabled = !preferences.value.notificationsEnabled;
+};
+
+const selectAvatar = () => {
+	// Триггерим выбор файла для аватара
+	refs.avatarInput.click();
+};
+
+const onAvatarChange = (event: Event) => {
+	const input = event.target as HTMLInputElement;
+	if (input.files && input.files[0]) {
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			avatarUrl.value = e.target?.result as string;
+		};
+		reader.readAsDataURL(input.files[0]);
+	}
 };
 
 const goToQuestionnaire = () => {

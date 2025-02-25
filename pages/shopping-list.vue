@@ -7,13 +7,13 @@
 		/>
 
 		<!-- Список продуктов -->
-		<div class="relative py-6 px-4 mt-4 bg-white border rounded-2xl shadow-sm border-slate-200">
+		<div class="relative py-4 px-4 mt-4 bg-white border rounded-2xl shadow-sm border-slate-200">
 			<div class="mb-4 flex items-center justify-between">
 				<div class="flex items-center space-x-2">
-					<span class="text-lg font-medium">Прогресс покупок</span>
+					<span class="text-xl font-medium">Прогресс покупок</span>
 					<span class="text-sm text-slate-500">{{ totalItems }} продуктов</span>
 				</div>
-				<span class="text-lg font-medium text-blue-600">{{ Math.round(progress) }}%</span>
+				<span class="text-xl font-medium text-blue-600">{{ Math.round(progress) }}%</span>
 			</div>
 
 			<div class="mb-6">
@@ -31,7 +31,7 @@
 					:key="category.id"
 					class="space-y-4"
 				>
-					<h3 class="flex items-center text-lg font-medium text-gray-900">
+					<h3 class="flex items-center text-xl font-medium text-gray-900">
 						<span class="text-2xl mr-3">{{ category.emoji }}</span>
 						{{ category.name }}
 					</h3>

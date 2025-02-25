@@ -2,7 +2,7 @@
 	<div class="flex items-center justify-between w-full">
 		<div class="flex flex-col">
 			<span
-				class="text-lg font-medium capitalize"
+				class="text-xl font-medium capitalize"
 			>
 				{{ day.name }}
 			</span>

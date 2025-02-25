@@ -1,6 +1,6 @@
 <template>
 	<div v-if="stats" class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200">
-		<h2 class="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+		<h2 class="text-xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
 			<font-awesome-icon
 				icon="chart-pie"
 				class="text-purple-500 w-5 h-5"

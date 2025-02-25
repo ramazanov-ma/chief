@@ -41,5 +41,9 @@
 		'text-blue-500',
 		'text-pink-500',
 		'text-purple-500',
+		'py-1',
+		'py-1.5',
+		'py-2',
+		'py-2.5',
 	],
 };
