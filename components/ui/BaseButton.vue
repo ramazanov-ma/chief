@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
 	variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
 	size?: 'sm' | 'md' | 'lg';
 }>(), {
@@ -29,8 +29,8 @@ const variantClasses = {
 };
 
 const sizeClasses = {
-	sm: 'text-sm px-3 py-1.5',
-	md: 'text-sm px-4 py-2.5',
-	lg: 'text-base px-6 py-3'
+	sm: 'text-sm px-4 py-1.5',
+	md: 'text-sm px-6 py-2.5',
+	lg: 'text-base px-8 py-3'
 };
 </script>

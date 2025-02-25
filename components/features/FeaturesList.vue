@@ -1,9 +1,9 @@
 ﻿<template>
-	<div class="grid gap-6 md:grid-cols-3">
+	<div class="grid gap-4 justify-center sm:grid-cols-3 w-full max-w-2xl">
 		<FeatureCard
 			icon="calculator"
 			title="Точный расчёт"
-			subtitle="продуктов на неделю"
+			subtitle="продуктов"
 			color="blue"
 		/>
 		<FeatureCard

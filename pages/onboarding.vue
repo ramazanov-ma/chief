@@ -10,15 +10,13 @@
 					<TitleGradient>Составим меню вашей мечты вместе</TitleGradient>
 				</div>
 
-				<div class="flex justify-center">
+				<div class="flex justify-center mb-8">
 					<GradientDivider/>
 				</div>
 
-				<div class="mb-8">
-					<ServiceBenefits/>
-				</div>
-
 				<StepManager @form-completed="handleFormCompletion"/>
+
+				<ServiceBenefits/>
 			</div>
 		</DecorativeElements>
 	</div>

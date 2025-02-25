@@ -17,6 +17,7 @@
 			:variant="isStepValid ? 'primary' : 'secondary'"
 			:class="[!isStepValid && 'opacity-50 cursor-not-allowed bg-gray-300 hover:bg-gray-300 from-gray-400 to-gray-400']"
 			@click="next"
+			size="lg"
 		>
 			{{ isLastStep ? 'Завершить' : 'Далее' }}
 		</BaseButton>

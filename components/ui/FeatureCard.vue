@@ -1,5 +1,5 @@
 ﻿<template>
-	<div class="flex items-start text-gray-600 group">
+	<div class="flex items-start text-gray-600 group feature-card">
 		<div
 			class="mr-3 p-2.5 rounded-lg transition-colors duration-300"
 			:class="[`bg-${color}-50`, `group-hover:bg-${color}-100`]"
@@ -10,9 +10,9 @@
 				:class="`text-${color}-500`"
 			/>
 		</div>
-		<div class="text-left">
+		<div class="text-left sm:text-left sm:flex-grow">
 			<span class="text-sm font-medium block">{{ title }}</span>
-			<span class="text-sm text-gray-500">{{ subtitle }}</span>
+			<span class="block text-sm !leading-4 text-gray-500">{{ subtitle }}</span>
 		</div>
 	</div>
 </template>

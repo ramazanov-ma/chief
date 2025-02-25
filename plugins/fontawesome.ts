@@ -53,6 +53,7 @@ import {
 	faCheck,
 	faBell,
 	faClipboardList,
+	faGlobe
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -112,7 +113,8 @@ library.add(
 	faCookie,
 	faCheck,
 	faBell,
-	faClipboardList
+	faClipboardList,
+	faGlobe
 );
 
 export default defineNuxtPlugin((app) => {
