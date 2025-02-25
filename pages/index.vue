@@ -28,12 +28,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import WelcomeSection from '@/components/home/WelcomeSection.vue';
 import NextFamilyMealSection from '@/components/home/NextFamilyMealSection.vue';
-import ShoppingSection from '@/components/home/ShoppingSection.vue';
 import PlanningSection from '@/components/home/PlanningSection.vue';
-import { Meal } from "@/types/menu";
+import { Complexity, Meal, MealType } from "@/types/menu";
 
 interface PlanningStatsType {
 	budget: {
@@ -74,14 +73,19 @@ const currentMenu = ref({
 
 // Следующий прием пищи
 const nextMeal = ref({
-	time: '19:00',
-	name: 'Ужин',
+	id: 1,
+	time: '09:00',
+	type: MealType.BREAKFAST,
+	name: 'Овсяная каша с ягодами',
+	description: 'Питательная каша с черникой, медом и грецкими орехами',
+	emoji: '🥣',
+	calories: 320,
 	recipe: {
 		id: '1',
-		name: 'Паста Карбонара',
-		cookingTime: 30,
+		name: 'Овсяная каша с ягодами',
+		cookingTime: 15,
 		portionCount: 1,
-		complexity: 'medium'
+		complexity: Complexity.EASY,
 	},
 	portions: [
 		{ memberName: 'Магомед', portion: 1 }

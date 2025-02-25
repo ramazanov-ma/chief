@@ -26,8 +26,16 @@ export interface Portion {
 	portion: number;
 }
 
+export enum MealType {
+	BREAKFAST,
+	LUNCH,
+	SNACK,
+	DINNER,
+}
+
 export interface Meal {
 	id: number;
+	type: MealType;
 	time: string;
 	name: string;
 	description: string;

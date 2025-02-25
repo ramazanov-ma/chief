@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useWeekDates } from '@/composables/useWeekDates';
-import { Complexity, DayState, Meal } from '@/types/menu';
+import { Complexity, DayState, Meal, MealType } from '@/types/menu';
 import { useMenuStore } from '@/stores/menu';
 import MenuDayCard from '@/components/weekly/MenuDayCard.vue';
 
@@ -39,6 +39,7 @@ const exampleMeals: Meal[] = [
 	{
 		id: 1,
 		time: '09:00',
+		type: MealType.BREAKFAST,
 		name: 'Овсяная каша с ягодами',
 		description: 'Питательная каша с черникой, медом и грецкими орехами',
 		emoji: '🥣',
@@ -57,6 +58,7 @@ const exampleMeals: Meal[] = [
 	{
 		id: 2,
 		time: '13:30',
+		type: MealType.LUNCH,
 		name: 'Куриный суп с лапшой',
 		description: 'Легкий суп на курином бульоне с домашней лапшой и овощами',
 		emoji: '🍜',
@@ -75,6 +77,7 @@ const exampleMeals: Meal[] = [
 	{
 		id: 3,
 		time: '16:00',
+		type: MealType.SNACK,
 		name: 'Творожная запеканка',
 		description: 'С изюмом и ванильным соусом',
 		emoji: '🧁',
@@ -93,6 +96,7 @@ const exampleMeals: Meal[] = [
 	{
 		id: 4,
 		time: '19:00',
+		type: MealType.DINNER,
 		name: 'Стейк из лосося',
 		description: 'С гарниром из киноа и свежих овощей',
 		emoji: '🐟',

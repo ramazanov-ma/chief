@@ -6,7 +6,7 @@
 					icon="utensils"
 					class="text-orange-500 w-5 h-5"
 				/>
-				<h2 class="text-xl font-semibold">{{ meal.name }} - {{ meal.time }}</h2>
+				<h2 class="text-xl font-semibold">{{ getMealType(meal.type) }} - {{ meal.time }}</h2>
 			</div>
 			<!--			<div-->
 			<!--				v-if="!isSingleUser"-->
@@ -42,7 +42,7 @@
 
 		<div>
 			<div class="flex items-start justify-between space-x-2">
-				<MealTitle title="Стейк из лосося"/>
+				<MealTitle :title="meal.name"/>
 			</div>
 			<MealDescription description="С гарниром из киноа и свежих овощей"/>
 		</div>
@@ -82,7 +82,7 @@ import { useRouter } from 'vue-router';
 import BaseButton from '@/components/ui/BaseButton.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import ComplexityIndicator from "@/components/ui/ComplexityIndicator.vue";
-import { Complexity, Meal } from "@/types/menu";
+import { Complexity, Meal, MealType } from "@/types/menu";
 import CookingTimeBadge from "@/components/ui/CookingTimeBadge.vue";
 import CaloriesBadge from "@/components/ui/CaloriesBadge.vue";
 import MealTitle from "@/components/ui/MealTitle.vue";
@@ -94,6 +94,20 @@ const props = defineProps<{
 	meal: Meal;
 	isSingleUser: boolean;
 }>();
+
+
+const getMealType = (mealType: MealType) => {
+	switch (mealType) {
+		case MealType.BREAKFAST:
+			return 'Завтрак';
+		case MealType.LUNCH:
+			return 'Обед';
+		case MealType.DINNER:
+			return 'Ужин';
+		case MealType.SNACK:
+			return 'Перекус';
+	}
+}
 
 const startCooking = () => {
 	router.push(`/recipes/${props.meal.recipe.id}/cooking`);
