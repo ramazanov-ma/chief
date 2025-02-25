@@ -2,21 +2,21 @@
 	<div class="flex flex-col">
 		<AppHeader/>
 		<main class="flex-1">
-			<div class="flex flex-col gap-4">
-				<WelcomeSection
-					:family="family"
-					:current-menu="currentMenu"
-				/>
-
+			<div class="flex flex-col gap-4 pb-4">
 				<NextFamilyMealSection
 					:meal="nextMeal"
 					:is-single-user="isSingleUser"
 				/>
 
-				<ShoppingSection
-					:shopping-list="shoppingList"
-					:is-single-user="isSingleUser"
+				<WelcomeSection
+					:family="family"
+					:current-menu="currentMenu"
 				/>
+
+<!--				<ShoppingSection-->
+<!--					:shopping-list="shoppingList"-->
+<!--					:is-single-user="isSingleUser"-->
+<!--				/>-->
 
 				<PlanningSection
 					:stats="planningStats"
