@@ -1,3 +1,6 @@
+import { scalarOptions } from "yaml";
+import Str = scalarOptions.Str;
+
 export enum DayState {
 	PAST = 'past',
 	CURRENT = 'current',
@@ -10,6 +13,19 @@ export enum Complexity {
 	HARD = 3
 }
 
+export interface Recipe {
+	id: string;
+	name: string;
+	cookingTime: number;
+	portionCount: number;
+	complexity: Complexity;
+}
+
+export interface Portion {
+	memberName: string;
+	portion: number;
+}
+
 export interface Meal {
 	id: number;
 	time: string;
@@ -17,8 +33,8 @@ export interface Meal {
 	description: string;
 	emoji: string;
 	calories: number;
-	cookingTime: number;
-	complexity: Complexity;
+	recipe: Recipe;
+	portions: Array<Portion>;
 }
 
 export interface Day {

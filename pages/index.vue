@@ -33,6 +33,7 @@ import WelcomeSection from '@/components/home/WelcomeSection.vue';
 import NextFamilyMealSection from '@/components/home/NextFamilyMealSection.vue';
 import ShoppingSection from '@/components/home/ShoppingSection.vue';
 import PlanningSection from '@/components/home/PlanningSection.vue';
+import { Meal } from "@/types/menu";
 
 interface PlanningStatsType {
 	budget: {
@@ -85,31 +86,31 @@ const nextMeal = ref({
 	portions: [
 		{ memberName: 'Магомед', portion: 1 }
 	]
-});
+} as Meal);
 
 // Список покупок
-const shoppingList = ref({
-	totalItems: 15,
-	purchasedItems: 8,
-	nearestShoppingDate: '2025-02-21',
-	categories: [
-		{
-			name: 'Овощи и фрукты',
-			items: [
-				{ id: 1, name: 'Помидоры', quantity: 500, unit: 'г', purchased: false },
-				{ id: 2, name: 'Огурцы', quantity: 300, unit: 'г', purchased: true },
-				{ id: 3, name: 'Яблоки', quantity: 1, unit: 'кг', purchased: false }
-			]
-		},
-		{
-			name: 'Молочные продукты',
-			items: [
-				{ id: 4, name: 'Молоко', quantity: 1, unit: 'л', purchased: true },
-				{ id: 5, name: 'Сыр', quantity: 300, unit: 'г', purchased: false }
-			]
-		}
-	]
-});
+// const shoppingList = ref({
+// 	totalItems: 15,
+// 	purchasedItems: 8,
+// 	nearestShoppingDate: '2025-02-21',
+// 	categories: [
+// 		{
+// 			name: 'Овощи и фрукты',
+// 			items: [
+// 				{ id: 1, name: 'Помидоры', quantity: 500, unit: 'г', purchased: false },
+// 				{ id: 2, name: 'Огурцы', quantity: 300, unit: 'г', purchased: true },
+// 				{ id: 3, name: 'Яблоки', quantity: 1, unit: 'кг', purchased: false }
+// 			]
+// 		},
+// 		{
+// 			name: 'Молочные продукты',
+// 			items: [
+// 				{ id: 4, name: 'Молоко', quantity: 1, unit: 'л', purchased: true },
+// 				{ id: 5, name: 'Сыр', quantity: 300, unit: 'г', purchased: false }
+// 			]
+// 		}
+// 	]
+// });
 
 // Статистика планирования
 const planningStats = ref<PlanningStatsType>({

@@ -38,10 +38,10 @@
 
 									<div class="flex items-center flex-wrap gap-x-4">
 										<CaloriesBadge :calories="meal.calories"/>
-										<CookingTimeBadge :time="meal.cookingTime"/>
+										<CookingTimeBadge :time="meal.recipe.cookingTime"/>
 										<ComplexityIndicator
 											text-class="font-medium text-gray-700"
-											:complexity="meal.complexity"
+											:complexity="meal.recipe.complexity"
 										/>
 
 										<div
@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { DayMenu, DayState, Meal } from "@/types/menu";
+import { DayMenu, DayState } from "@/types/menu";
 import CaloriesBadge from "@/components/ui/CaloriesBadge.vue";
 import CookingTimeBadge from "@/components/ui/CookingTimeBadge.vue";
 import MealTitle from "@/components/ui/MealTitle.vue";

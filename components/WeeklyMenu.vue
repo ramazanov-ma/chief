@@ -7,7 +7,7 @@
 			:meals="day.meals"
 			:state="day.state"
 			:is-editable="canEditDay(day)"
-			@replace-meal="(meal: any) => handleReplaceMeal(day.date, meal)"
+			@replace-meal="(params) => handleReplaceMeal(day.date, params)"
 			@regenerate="() => handleRegenerateDay(day.date)"
 		/>
 	</div>
@@ -28,7 +28,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const emit = defineEmits<{
-	(e: 'replace-meal', params: { date: string; mealId: string; newMealId: string }): void;
+	(e: 'replace-meal', params: { date: string; mealId: number; newMealId: string }): void;
 	(e: 'regenerate-day', date: string): void;
 }>();
 
@@ -43,8 +43,16 @@ const exampleMeals: Meal[] = [
 		description: 'Питательная каша с черникой, медом и грецкими орехами',
 		emoji: '🥣',
 		calories: 320,
-		cookingTime: 15,
-		complexity: Complexity.EASY
+		recipe: {
+			id: '1',
+			name: 'Овсяная каша с ягодами',
+			cookingTime: 15,
+			portionCount: 1,
+			complexity: Complexity.EASY,
+		},
+		portions: [
+			{ memberName: 'Магомед', portion: 1 }
+		]
 	},
 	{
 		id: 2,
@@ -53,8 +61,16 @@ const exampleMeals: Meal[] = [
 		description: 'Легкий суп на курином бульоне с домашней лапшой и овощами',
 		emoji: '🍜',
 		calories: 450,
-		cookingTime: 45,
-		complexity: Complexity.HARD
+		recipe: {
+			id: '2',
+			name: 'Куриный суп с лапшой',
+			cookingTime: 45,
+			portionCount: 1,
+			complexity: Complexity.HARD,
+		},
+		portions: [
+			{ memberName: 'Магомед', portion: 1 }
+		]
 	},
 	{
 		id: 3,
@@ -63,8 +79,16 @@ const exampleMeals: Meal[] = [
 		description: 'С изюмом и ванильным соусом',
 		emoji: '🧁',
 		calories: 280,
-		cookingTime: 30,
-		complexity: Complexity.HARD
+		recipe: {
+			id: '3',
+			name: 'Творожная запеканка',
+			cookingTime: 30,
+			portionCount: 1,
+			complexity: Complexity.HARD,
+		},
+		portions: [
+			{ memberName: 'Магомед', portion: 1 }
+		]
 	},
 	{
 		id: 4,
@@ -73,8 +97,16 @@ const exampleMeals: Meal[] = [
 		description: 'С гарниром из киноа и свежих овощей',
 		emoji: '🐟',
 		calories: 520,
-		cookingTime: 25,
-		complexity: Complexity.MEDIUM
+		recipe: {
+			id: '4',
+			name: 'Стейк из лосося',
+			cookingTime: 25,
+			portionCount: 1,
+			complexity: Complexity.MEDIUM
+		},
+		portions: [
+			{ memberName: 'Магомед', portion: 1 }
+		]
 	}
 ];
 
@@ -99,7 +131,6 @@ const weekDays = computed(() => {
 
 		days.push({
 			date: currentDay.toISOString().split('T')[0],
-			// meals: menuStore.getMealsForDay(currentDay) || [], // Получаем блюда из store
 			meals: [...exampleMeals],
 			state,
 		});
@@ -114,13 +145,13 @@ const canEditDay = (day: { date: string; state: DayState }) => {
 };
 
 // Обработчик замены блюда
-const handleReplaceMeal = async (date: string, meal: { id: string; name: string }) => {
+const handleReplaceMeal = async (date: string, params: { id: number; name: string }) => {
 	const day = weekDays.value.find(d => d.date === date);
 	if (!day || !canEditDay(day)) return;
 
 	emit('replace-meal', {
 		date,
-		mealId: meal.id,
+		mealId: params.id,
 		newMealId: '' // ID нового блюда будет определено в родительском компоненте
 	});
 };
@@ -137,7 +168,6 @@ const handleRegenerateDay = async (date: string) => {
 watch(
 	[() => props.weekOffset, () => props.currentDate],
 	() => {
-		// При необходимости можно добавить дополнительную логику обновления
 		menuStore.fetchWeekMenu(props.weekOffset);
 	},
 	{ immediate: true }
