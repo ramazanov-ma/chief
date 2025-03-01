@@ -45,10 +45,10 @@ import Budget from '@/components/onboarding/Budget.vue';
 
 import { useTelegram } from '@/composables/useTelegram';
 
-const currentStep = ref<number>(FORM_STEPS.BASIC_INFO);
-const totalSteps = FORM_STEPS.TOTAL;
 
 const { userData } = useTelegram();
+const currentStep = ref<number>(FORM_STEPS.BASIC_INFO);
+const totalSteps = FORM_STEPS.TOTAL;
 
 const defaultFormData: FormData = {
 	name: userData.value?.first_name ?? '',

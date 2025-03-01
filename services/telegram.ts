@@ -1,6 +1,6 @@
 import api from './api'
 import { Ref } from 'vue'
-import { WebApp, TelegramUser } from '@/types/telegram'
+import { WebApp } from '@/types/telegram'
 
 interface TelegramAuthData {
 	initData: string
