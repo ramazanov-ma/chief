@@ -7,9 +7,9 @@
 			:meals="day.meals"
 			:state="day.state"
 			:is-editable="canEditDay(day)"
-			@replace-meal="(params) => handleReplaceMeal(day.date, params)"
 			@regenerate="() => handleRegenerateDay(day.date)"
 		/>
+<!--		@replace-meal="(params) => handleReplaceMeal(day.date, params)"-->
 	</div>
 </template>
 

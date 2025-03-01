@@ -1,6 +1,3 @@
-import { scalarOptions } from "yaml";
-import Str = scalarOptions.Str;
-
 export enum DayState {
 	PAST = 'past',
 	CURRENT = 'current',

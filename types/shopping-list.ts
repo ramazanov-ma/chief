@@ -9,7 +9,7 @@ export interface ShoppingList {
 
 export interface ShoppingItem {
   id: string;
-  product: Product;
+  // product: Product;
   quantity: number;
   purchased: boolean;
   listType: 'initial' | 'additional';

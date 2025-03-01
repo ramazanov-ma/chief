@@ -74,12 +74,14 @@
 import { ref, computed } from 'vue';
 import WeeklySelector from '@/components/weekly/WeeklySelector.vue';
 
+definePageMeta({
+	middleware: ['onboarding']
+});
 interface ShoppingItem {
 	id: number;
 	name: string;
 	checked: boolean;
 }
-
 interface Category {
 	id: number;
 	name: string;

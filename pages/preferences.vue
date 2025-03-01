@@ -108,6 +108,10 @@ import BaseInput from '@/components/ui/BaseInput.vue';
 import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseSelect from '@/components/ui/BaseSelect.vue';
 
+definePageMeta({
+	middleware: ['onboarding']
+});
+
 const router = useRouter();
 const onboardingStore = useOnboardingStore();
 
@@ -135,7 +139,7 @@ const toggleNotifications = () => {
 
 const selectAvatar = () => {
 	// Триггерим выбор файла для аватара
-	refs.avatarInput.click();
+	// refs.avatarInput.click();
 };
 
 const onAvatarChange = (event: Event) => {

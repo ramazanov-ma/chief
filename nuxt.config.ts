@@ -20,6 +20,9 @@ export default {
 			link: [
 				{ rel: 'manifest', href: '/manifest.json' },
 				{ rel: 'apple-touch-icon', href: '/icon-192x192.png' }
+			],
+			script: [
+				{ src: 'https://telegram.org/js/telegram-web-app.js', defer: true }
 			]
 		}
 	},
@@ -48,10 +51,36 @@ export default {
 		'@pinia/nuxt',
 	],
 
+	// Настройка Vite внутри Nuxt
+	vite: {
+		server: {
+			host: '0.0.0.0',
+			hmr: {
+				clientPort: 443
+			},
+			// Разрешаем ngrok домен
+			allowedHosts: [
+				'localhost',
+				'a327-176-233-29-194.ngrok-free.app'
+			],
+		}
+	},
+
+	// Настройки сервера Nuxt
+	server: {
+		host: '0.0.0.0', // Слушаем на всех интерфейсах
+		port: 3000 // Nuxt обычно использует порт 3000 по умолчанию
+	},
+
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {
 		transpile: ['@fortawesome/vue-fontawesome']
 	},
+
+	// typescript: {
+	// 	strict: true,
+	// 	typeCheck: true
+	// },
 
 	compatibilityDate: '2025-01-28'
 };

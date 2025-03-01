@@ -13,10 +13,10 @@
 					:current-menu="currentMenu"
 				/>
 
-<!--				<ShoppingSection-->
-<!--					:shopping-list="shoppingList"-->
-<!--					:is-single-user="isSingleUser"-->
-<!--				/>-->
+				<!--				<ShoppingSection-->
+				<!--					:shopping-list="shoppingList"-->
+				<!--					:is-single-user="isSingleUser"-->
+				<!--				/>-->
 
 				<PlanningSection
 					:stats="planningStats"
@@ -33,6 +33,10 @@ import WelcomeSection from '@/components/home/WelcomeSection.vue';
 import NextFamilyMealSection from '@/components/home/NextFamilyMealSection.vue';
 import PlanningSection from '@/components/home/PlanningSection.vue';
 import { Complexity, Meal, MealType } from "@/types/menu";
+
+definePageMeta({
+	middleware: ['onboarding']
+});
 
 interface PlanningStatsType {
 	budget: {

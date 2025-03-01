@@ -20,6 +20,10 @@ import { ref, computed } from 'vue';
 import { useWeekDates } from '@/composables/useWeekDates';
 import WeeklySelector from '@/components/weekly/WeeklySelector.vue';
 
+definePageMeta({
+	middleware: ['onboarding']
+});
+
 const currentWeekOffset = ref(0);
 const currentDate = ref(new Date());
 
