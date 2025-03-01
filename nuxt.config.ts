@@ -19,7 +19,8 @@ export default {
 			// Добавим иконку для PWA
 			link: [
 				{ rel: 'manifest', href: '/manifest.json' },
-				{ rel: 'apple-touch-icon', href: '/icon-192x192.png' }
+				{ rel: 'apple-touch-icon', href: '/icon-192x192.png' },
+				{ rel: 'icon', type: 'image/png', href: '/icon-192x192.png' }
 			],
 			script: [
 				{ src: 'https://telegram.org/js/telegram-web-app.js', defer: true }
@@ -50,6 +51,20 @@ export default {
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
 	],
+
+	imports: {
+		dirs: ['stores']
+	},
+
+	nitro: {
+		devProxy: {
+			'/api': {
+				target: 'http://localhost:5258/api',
+				changeOrigin: true,
+				prependPath: true
+			}
+		}
+	},
 
 	// Настройка Vite внутри Nuxt
 	vite: {
