@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useNuxtApp } from "nuxt/app";
-import TelegramService from "@/services/telegramService";
+import TelegramService from "@/services/telegram";
 
 interface TelegramState {
 	isAuthenticated: boolean

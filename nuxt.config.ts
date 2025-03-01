@@ -89,10 +89,10 @@ export default {
 		transpile: ['@fortawesome/vue-fontawesome']
 	},
 
-	// typescript: {
-	// 	strict: true,
-	// 	typeCheck: true
-	// },
+	typescript: {
+		strict: true,
+		typeCheck: true
+	},
 
 	compatibilityDate: '2025-01-28'
 };

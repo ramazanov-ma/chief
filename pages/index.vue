@@ -29,10 +29,11 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { Complexity, Meal, MealType } from "@/types/menu";
+import { definePageMeta } from '@/.nuxt/imports';
 import WelcomeSection from '@/components/home/WelcomeSection.vue';
 import NextFamilyMealSection from '@/components/home/NextFamilyMealSection.vue';
 import PlanningSection from '@/components/home/PlanningSection.vue';
-import { Complexity, Meal, MealType } from "@/types/menu";
 
 definePageMeta({
 	middleware: ['onboarding']

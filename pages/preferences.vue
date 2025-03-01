@@ -103,7 +103,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { useOnboardingStore } from "@/stores/onboarding";
+import { useOnboardingStore } from '@/stores/onboarding';
+import { definePageMeta } from '@/.nuxt/imports';
 import BaseInput from '@/components/ui/BaseInput.vue';
 import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseSelect from '@/components/ui/BaseSelect.vue';

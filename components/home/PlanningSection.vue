@@ -31,9 +31,7 @@
 				<div class="w-full h-1 bg-slate-200 rounded-full mt-2">
 					<div
 						class="h-full bg-green-500 rounded-full transition-all duration-300"
-						:style="{
-              width: `${(stats.budget.actual / stats.budget.planned) * 100}%`
-            }"
+						:style="{ width: `${(stats.budget.actual / stats.budget.planned) * 100}%` }"
 					></div>
 				</div>
 			</div>
@@ -63,9 +61,9 @@
 						:key="n"
 						class="flex-1 h-1 rounded-full"
 						:class="{
-              'bg-red-500': n <= stats.preferences.matched,
-              'bg-slate-200': n > stats.preferences.matched
-            }"
+							'bg-red-500': n <= stats.preferences.matched,
+							'bg-slate-200': n > stats.preferences.matched
+						}"
 					></div>
 				</div>
 			</div>
@@ -106,11 +104,12 @@
 					class="text-yellow-500 w-4 h-4 mt-1 sm:mt-0"
 				/>
 				<span>
-          {{ isSingleUser
-					? 'Рекомендации по улучшению меню за неделю ждут вас в разделе планирования'
-					: 'Персональные рекомендации для каждого члена семьи за неделю доступны в разделе планирования'
+					{{
+						isSingleUser
+							? 'Рекомендации по улучшению меню за неделю ждут вас в разделе планирования'
+							: 'Персональные рекомендации для каждого члена семьи за неделю доступны в разделе планирования'
 					}}
-        </span>
+				</span>
 			</div>
 			<BaseButton
 				variant="outline"
@@ -130,8 +129,8 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import { useRouter } from 'vue-router';
-import BaseButton from '@/components/ui/BaseButton.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import BaseButton from '@/components/ui/BaseButton.vue';
 
 const router = useRouter();
 

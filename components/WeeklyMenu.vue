@@ -17,7 +17,7 @@
 import { computed, watch } from 'vue';
 import { useWeekDates } from '@/composables/useWeekDates';
 import { Complexity, DayState, Meal, MealType } from '@/types/menu';
-import { useMenuStore } from '@/stores/menu';
+// import { useMenuStore } from '@/stores/menu';
 import MenuDayCard from '@/components/weekly/MenuDayCard.vue';
 
 interface Props {
@@ -32,7 +32,7 @@ const emit = defineEmits<{
 	(e: 'regenerate-day', date: string): void;
 }>();
 
-const menuStore = useMenuStore();
+// const menuStore = useMenuStore();
 const { getWeekStartDate, isDateInPast, isToday } = useWeekDates();
 
 const exampleMeals: Meal[] = [
@@ -172,7 +172,7 @@ const handleRegenerateDay = async (date: string) => {
 watch(
 	[() => props.weekOffset, () => props.currentDate],
 	() => {
-		menuStore.fetchWeekMenu(props.weekOffset);
+		// menuStore.fetchWeekMenu(props.weekOffset);
 	},
 	{ immediate: true }
 );

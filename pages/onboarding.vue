@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { definePageMeta } from '@/.nuxt/imports';
 import type { FormData } from '@/types/form';
 import TitleGradient from '@/components/ui/TitleGradient.vue';
 import TitleBadge from '@/components/ui/TitleBadge.vue';

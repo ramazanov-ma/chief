@@ -17,6 +17,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { definePageMeta } from '@/.nuxt/imports';
 import { useWeekDates } from '@/composables/useWeekDates';
 import WeeklySelector from '@/components/weekly/WeeklySelector.vue';
 

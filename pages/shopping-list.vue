@@ -73,10 +73,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import WeeklySelector from '@/components/weekly/WeeklySelector.vue';
+import { definePageMeta } from '@/.nuxt/imports';
 
 definePageMeta({
 	middleware: ['onboarding']
 });
+
 interface ShoppingItem {
 	id: number;
 	name: string;
