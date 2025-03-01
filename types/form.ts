@@ -1,6 +1,6 @@
 ﻿export interface FormData {
 	name: string;
-	age: number | null;
+	lastname: string;
 	servings: number;
 	cookingExperience: 'beginner' | 'intermediate' | 'advanced' | 'expert';
 	cuisines: string[];

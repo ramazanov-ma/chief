@@ -6,18 +6,26 @@
 			<BaseInput
 				id="name"
 				type="text"
-				label="Как к вам обращаться?"
+				label="Имя"
 				placeholder="Ваше имя"
 				v-model="name"
 			/>
 
 			<BaseInput
-				id="age"
-				type="number"
-				label="Возраст"
-				placeholder="Ваш возраст"
-				v-model="age"
+				id="name"
+				type="text"
+				label="Фамилия"
+				placeholder="Фамилия"
+				v-model="lastname"
 			/>
+
+<!--			<BaseInput-->
+<!--				id="age"-->
+<!--				type="number"-->
+<!--				label="Возраст"-->
+<!--				placeholder="Ваш возраст"-->
+<!--				v-model="age"-->
+<!--			/>-->
 		</div>
 	</div>
 </template>
@@ -41,8 +49,8 @@ const name = computed({
 	set: (value) => emit('update:modelValue', {...props.modelValue, name: value})
 });
 
-const age = computed({
-	get: () => props.modelValue.age,
-	set: (value) => emit('update:modelValue', {...props.modelValue, age: value})
+const lastname = computed({
+	get: () => props.modelValue.lastname,
+	set: (value) => emit('update:modelValue', {...props.modelValue, lastname: value})
 });
 </script>

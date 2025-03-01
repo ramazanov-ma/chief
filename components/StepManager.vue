@@ -43,12 +43,16 @@ import CookingTime from '@/components/onboarding/CookingTime.vue';
 import ShoppingFrequency from '@/components/onboarding/ShoppingFrequency.vue';
 import Budget from '@/components/onboarding/Budget.vue';
 
+import { useTelegram } from '@/composables/useTelegram';
+
 const currentStep = ref<number>(FORM_STEPS.BASIC_INFO);
 const totalSteps = FORM_STEPS.TOTAL;
 
+const { userData } = useTelegram();
+
 const defaultFormData: FormData = {
-	name: '',
-	age: null,
+	name: userData.value?.first_name ?? '',
+	lastname: userData.value?.last_name ?? '',
 	servings: 1,
 	cuisines: [],
 	cookingExperience: 'beginner',
@@ -89,7 +93,7 @@ const currentStepComponent = computed(() => {
 
 const isCurrentStepValid = computed(() => {
 	if (currentStep.value === FORM_STEPS.BASIC_INFO) {
-		return formData.value.name?.length > 0 && formData.value.age !== null;
+		return formData.value.name?.length > 0 && formData.value.lastname?.length > 0;
 	}
 
 	if (currentStep.value === FORM_STEPS.COOKING_EXPERIENCE) {
