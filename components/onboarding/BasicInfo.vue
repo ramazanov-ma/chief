@@ -15,7 +15,7 @@
 				id="name"
 				type="text"
 				label="Фамилия"
-				placeholder="Фамилия"
+				placeholder="Ваша фамилия"
 				v-model="lastname"
 			/>
 

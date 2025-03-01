@@ -55,9 +55,6 @@ export default {
 	vite: {
 		server: {
 			host: '0.0.0.0',
-			hmr: {
-				clientPort: 443
-			},
 			// Разрешаем ngrok домен
 			allowedHosts: [
 				'localhost',
